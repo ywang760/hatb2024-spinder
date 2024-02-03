@@ -1,27 +1,4 @@
 /* Card.module.css */
 .card {
-  color: #cfd8dc; /* Light text color */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  padding: 24px;
-  border-radius: 12px;
-  width: 400px;
-  border: 2px solid #00ff00; /* Neon green border */
-}
-
-.card img {
-  border-radius: 0.25rem;
-}
-
-.card .details {
-  margin-left: 16px;
-}
-
-.card .details h2 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.card .details p {
-  color: #b0bec5; /* Slightly darker text color for less important text */
+  border-radius: 5rem;
 }
