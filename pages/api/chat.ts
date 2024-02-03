@@ -1,47 +1,37 @@
-import { useState } from "react";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
+import OpenAI from "openai";
 
-type gptResponse = {
-  content: string;
-};
+export async function POST(request: { json: () => any; }) {
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<gptResponse>
-) {
-  // Handle dialog input submission
-  const handleDialogSubmit = async (dialogInput: string) => {
-    // // Make API call to ChatGPT 4 API with dialogInput
-    // const response = await fetch(
-    //   "https://api.chatgpt.com/v1/chat/completions",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: "Bearer YOUR_API_KEY", // Replace with your ChatGPT 4 API key
-    //     },
-    //     body: JSON.stringify({
-    //       messages: [
-    //         {
-    //           role: "system",
-    //           content: "You: " + dialogInput,
-    //         },
-    //       ],
-    //     }),
-    //   }
-    // );
+  // Grabbing the user's input
+  const params = await request.json();
 
-    // const data = await response.json();
+  // Passing it to Chat GPT API
+  const response = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "system",
+        content:
+          "You are thrilled to be talking to me! Please respond like we're old friends and haven't spoken in years.",
+        //content: "You are very grumpy. Please answer my questions with sarcasm, grumpiness, and anger."
+      },
+      {
+        role: "user",
+        content: params.prompt, // string that the user passes in
+      },
+    ],
+    temperature: 0,
+    max_tokens: 1024,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+  });
 
-    // // Extract the generated response from the API
-    // const generatedResponse = data.choices[0].message.content;
-
-    // Send the generated response as the API response
-    res.status(200).json({ content: dialogInput });
-  };
-
-  if (req.method === "POST") {
-    const { myInput } = req.body;
-    handleDialogSubmit(myInput);
-  }
+  // Send our response to the front end
+  console.log(response);
+  return NextResponse.json(response);
 }
