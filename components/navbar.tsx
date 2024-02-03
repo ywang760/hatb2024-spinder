@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Button from "@mui/material/Button";
 import Image from "next/image";
 import ExploreIcon from "@mui/icons-material/Explore";
 import ChatIcon from "@mui/icons-material/Chat";
@@ -10,7 +9,13 @@ const Navbar = () => {
   return (
     <nav className="flex flex-col items-center w-80 h-full p-6 bg-red-500 text-white justify-around">
       <div className="flex flex-col items-center mb-20">
-        <Image src="/logo.png" alt="Space" width={200} height={200} />
+        <Image
+          src="/logo.png"
+          alt="Space"
+          width={200}
+          height={200}
+          className="rounded-full"
+        />
         <span className="text-5xl mt-20">name</span>
       </div>
       <div className="flex flex-col gap-8 mb-8">
