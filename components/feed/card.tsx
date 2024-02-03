@@ -1,7 +1,7 @@
 import Details from "@/components/feed/details";
 import { Alien } from "@/types/alien";
-import { Cancel } from "@mui/icons-material";
 import ChatIcon from "@mui/icons-material/Chat";
+import ClearIcon from "@mui/icons-material/Clear";
 import OutboundIcon from "@mui/icons-material/Outbound";
 import Image from "next/image";
 import { useState } from "react";
@@ -66,17 +66,21 @@ const Card = ({ id, setCard, nextCard, setNextCard }: CardProps) => {
             {/* TODO: use different fonts to differentiate */}
             <p className="">{alien.origin}</p>
           </div>
-          <div className="absolute invisible group-hover:visible bottom-10 right-10 p-2">
-            <button
-              className="bg-red-500 rounded-full p-4"
-              onClick={() => handleMessage()}
-            >
-              <ChatIcon className="text-3xl" />
-            </button>
-          </div>
+          <div className="absolute invisible group-hover:visible bottom-10 right-10 p-2"></div>
         </div>
-        <div className="flex justify-center transform hover:scale-120">
-          <Cancel className="text-6xl text-zinc-400" onClick={handleDelete} />
+        <div className="flex items-center justify-center transform hover:scale-120 flex-row space-x-4">
+          <button
+            className="bg-zinc-400 rounded-full p-4"
+            onClick={handleDelete}
+          >
+            <ClearIcon className="text-white text-2xl " />
+          </button>
+          <button
+            className="bg-red-500 rounded-full p-4"
+            onClick={() => handleMessage()}
+          >
+            <ChatIcon className="text-white text-2xl" />
+          </button>
         </div>
       </div>
       <Details

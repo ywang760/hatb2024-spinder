@@ -1,6 +1,7 @@
 interface Alien {
   name: string;
   profilePicture?: string; // TODO:
+
   species: string;
   age: string;
   height: string;
