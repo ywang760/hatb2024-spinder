@@ -1,9 +1,9 @@
-import React from "react";
 import Card from "@/components/feed/card";
 
+// TODO: DELETE~
 const cardtest = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center">
       <Card />
     </div>
   );
