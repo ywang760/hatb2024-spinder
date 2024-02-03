@@ -30,40 +30,20 @@ export default function Chatbox() {
       const responseMessage: Message = { content: data.content, sender: "Bot" }; //TODO: change name
       setMessages([...messages, myMessage, responseMessage]);
     }
+
+    if (myInput === "reset") {
+      setMessages([]); // Clear messages in UI
+      // Consider a dedicated API call for reset if implemented
+    }
   };
 
   // Handle the Enter key press for inputs
   const handleKeyPress = (e: { key: string; preventDefault: () => void; }) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Prevent the default action to avoid form submission or any other unintended behavior
+      e.preventDefault(); // Prevent the default action to avoid forubmission or any other unintended behavior
       handleSend(myInput, characterDescription);
     }
   };
-
-  // // New function to handle image generation
-  // const handleGenerateImage = async () => {
-  //   const response = await fetch('/api/generate-image', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ description: characterDescription }),
-  //   });
-
-  //   if (!response.ok) {
-  //     console.error('Error generating image');
-  //     return;
-  //   }
-
-  //   const blob = await response.blob();
-  //   const url = window.URL.createObjectURL(blob);
-  //   const link = document.createElement('a');
-  //   link.href = url;
-  //   link.download = 'generated-image.png'; // Or any other extension
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  // };
 
   return (
     <div className="flex flex-col h-screen border bg-zinc-300">
@@ -85,20 +65,20 @@ export default function Chatbox() {
 
       <div className="p-4 flex-none">
         <div className="flex">
-          <Button onClick={() => {setMessages([])}}>Clear</Button>
+          <Button onClick={() => {handleSend("reset", characterDescription); setMessages([]);}}>Clear</Button>
           <input
             className="flex-grow rounded-l-lg p-2 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
             placeholder="Character description..."
             value={characterDescription}
             onChange={(e) => setCharacterDescription(e.target.value)}
-            onKeyDown={handleKeyPress} // Added onKeyDown event listener
+            onKeyDown={handleKeyPress}
           />
           <input
             className="flex-grow rounded-l-lg p-2 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
             placeholder="Write your message..."
             value={myInput}
             onChange={(e) => setMyInput(e.target.value)}
-            onKeyDown={handleKeyPress} // Added onKeyDown event listener
+            onKeyDown={handleKeyPress}
           />
           <button
             className="px-8 rounded-r-lg bg-blue-400 text-white font-bold p-2 uppercase border-blue-500 border-t border-b border-r"
@@ -108,9 +88,6 @@ export default function Chatbox() {
           </button>
         </div>
       </div>
-      <div>
-      {/* <button onClick={handleGenerateImage} className="your-button-classes">Generate Image</button> */}
-    </div>
     </div>
   );
 }
