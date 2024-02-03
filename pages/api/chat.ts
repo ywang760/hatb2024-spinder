@@ -1,37 +1,53 @@
-import { NextResponse } from "next/server";
+import { NextApiRequest, NextApiResponse } from "next";
 import OpenAI from "openai";
 
-export async function POST(request: { json: () => any; }) {
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
+type GptResponse = {
+  content: string;
+};
 
-  // Grabbing the user's input
-  const params = await request.json();
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<GptResponse>
+) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ content: "Method Not Allowed" });
+  }
 
-  // Passing it to Chat GPT API
-  const response = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
-    messages: [
-      {
-        role: "system",
-        content:
-          "You are thrilled to be talking to me! Please respond like we're old friends and haven't spoken in years.",
-        //content: "You are very grumpy. Please answer my questions with sarcasm, grumpiness, and anger."
-      },
-      {
-        role: "user",
-        content: params.prompt, // string that the user passes in
-      },
-    ],
-    temperature: 0,
-    max_tokens: 1024,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
-  });
+  const { myInput } = req.body;
 
-  // Send our response to the front end
-  console.log(response);
-  return NextResponse.json(response);
+  try {
+    const openai = new OpenAI({
+      apiKey: "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",
+    });
+
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content: "I want you to act like the three-body aliens from three body problem. I want you to respond and answer like the alien using the tone, manner and vocabulary those aliens would use, and think straight forwardly without understanding strategies, cheating, or analogies. Do not write any explanations. Only answer like the aliens.",
+        },
+        {
+          role: "user",
+          content: myInput,
+        },
+      ],
+      temperature: 0.5,
+      max_tokens: 1024,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    });
+
+    // Check if response.choices[0].message.content is not null
+    if (response.choices && response.choices.length > 0 && response.choices[0].message.content !== null) {
+      const messageContent = response.choices[0].message.content;
+      res.status(200).json({ content: messageContent });
+    } else {
+      res.status(500).json({ content: "Failed to fetch a valid response from OpenAI" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ content: "Internal Server Error" });
+  }
 }
