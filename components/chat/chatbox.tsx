@@ -26,8 +26,16 @@ export default function Chatbox() {
       return;
     } else {
       const data = await response.json();
-      const responseMesage: Message = { content: data.content, sender: "Bot" }; //TODO: change name
-      setMessages([...messages, myMessage, responseMesage]);
+      const responseMessage: Message = { content: data.content, sender: "Bot" }; //TODO: change name
+      setMessages([...messages, myMessage, responseMessage]);
+    }
+  };
+
+  // Handle the Enter key press for inputs
+  const handleKeyPress = (e: { key: string; preventDefault: () => void; }) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Prevent the default action to avoid form submission or any other unintended behavior
+      handleSend(myInput, characterDescription);
     }
   };
 
@@ -51,19 +59,20 @@ export default function Chatbox() {
 
       <div className="p-4 flex-none">
         <div className="flex">
-          {/* TODO: move button somewhere else */}
           <Button onClick={() => setMessages([])}>Clear</Button>
           <input
             className="flex-grow rounded-l-lg p-2 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
             placeholder="Character description..."
             value={characterDescription}
-            onChange={(e) => setCharacterDescription(e.target.value)} // Input for character description
+            onChange={(e) => setCharacterDescription(e.target.value)}
+            onKeyDown={handleKeyPress} // Added onKeyDown event listener
           />
           <input
             className="flex-grow rounded-l-lg p-2 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
             placeholder="Write your message..."
             value={myInput}
             onChange={(e) => setMyInput(e.target.value)}
+            onKeyDown={handleKeyPress} // Added onKeyDown event listener
           />
           <button
             className="px-8 rounded-r-lg bg-blue-400 text-white font-bold p-2 uppercase border-blue-500 border-t border-b border-r"
