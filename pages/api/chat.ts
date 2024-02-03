@@ -13,7 +13,7 @@ export default async function handler(
     return res.status(405).json({ content: "Method Not Allowed" });
   }
 
-  const { myInput } = req.body;
+  const { myInput, characterDescription } = req.body;
 
   try {
     const openai = new OpenAI({
@@ -25,7 +25,7 @@ export default async function handler(
       messages: [
         {
           role: "system",
-          content: "I want you to act like the three-body aliens from three body problem. I want you to respond and answer like the alien using the tone, manner and vocabulary those aliens would use, and think straight forwardly without understanding strategies, cheating, or analogies. Do not write any explanations. Only answer like the aliens.",
+          content: characterDescription,
         },
         {
           role: "user",

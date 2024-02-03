@@ -5,8 +5,9 @@ import Button from "@mui/material/Button";
 export default function Chatbox() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [myInput, setMyInput] = useState("");
+  const [characterDescription, setCharacterDescription] = useState("");
 
-  const handleSend = async (myInput: string) => {
+  const handleSend = async (myInput: string, characterDescription: string) => {
     setMyInput("");
     const myMessage: Message = { content: myInput, sender: "You" };
     setMessages([...messages, myMessage]);
@@ -17,7 +18,7 @@ export default function Chatbox() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ myInput }),
+      body: JSON.stringify({ myInput, characterDescription }),
     });
 
     if (!response.ok) {
@@ -54,13 +55,19 @@ export default function Chatbox() {
           <Button onClick={() => setMessages([])}>Clear</Button>
           <input
             className="flex-grow rounded-l-lg p-2 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
+            placeholder="Character description..."
+            value={characterDescription}
+            onChange={(e) => setCharacterDescription(e.target.value)} // Input for character description
+          />
+          <input
+            className="flex-grow rounded-l-lg p-2 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
             placeholder="Write your message..."
             value={myInput}
             onChange={(e) => setMyInput(e.target.value)}
           />
           <button
             className="px-8 rounded-r-lg bg-blue-400 text-white font-bold p-2 uppercase border-blue-500 border-t border-b border-r"
-            onClick={() => handleSend(myInput)}
+            onClick={() => handleSend(myInput, characterDescription)}
           >
             Send
           </button>
