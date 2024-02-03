@@ -33,7 +33,8 @@
     "occupation": "Quantum Sculptor",
     "meansOfCommunication": "Harmonic Resonance",
     "favoriteFood": "Radiant Nebula Nectar",
-    "favoriteProgrammingLanguage": "PlasmaCode"
+    "favoriteProgrammingLanguage": "PlasmaCode",
+    "profilePicture": "/profile.png"
   },
   {
     "name": "Vex",
@@ -51,7 +52,8 @@
     "meansOfCommunication": "Gravitational Waves",
     "favoriteFood": "Quantum Fluctuations",
     "favoriteProgrammingLanguage": "GravitonScript",
-    "funFact": "Once surfed a black hole's event horizon."
+    "funFact": "Once surfed a black hole's event horizon.",
+    "profilePicture": "/profile.png"
   },
   {
     "name": "Kor",
@@ -68,6 +70,7 @@
     "occupation": "Temporal Analyst",
     "meansOfCommunication": "Temporal Ripples",
     "favoriteFood": "Eternal Cosmic Popcorn",
-    "favoriteProgrammingLanguage": "QuantumAssembler"
+    "favoriteProgrammingLanguage": "QuantumAssembler",
+    "profilePicture": "/profile.png"
   }
 ]

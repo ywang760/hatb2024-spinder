@@ -9,10 +9,21 @@ import data from "../../data/alien.json";
 
 const aliens: Alien[] = data;
 
-const Card = () => {
+type CardProps = {
+  id: number;
+  setCard: (card: number) => void;
+  nextCard: number;
+  setNextCard: (card: number) => void;
+};
+
+const Card = ({ id, setCard, nextCard, setNextCard }: CardProps) => {
   // TODO: change mock data
-  const alien = aliens[0];
+  const alien = aliens[id];
   const [showDetails, setShowDetails] = useState<boolean>(false);
+
+  if (!alien) {
+    return null;
+  }
 
   const handleMessage = () => {
     console.log("Message");
@@ -20,6 +31,8 @@ const Card = () => {
 
   const handleDelete = () => {
     console.log("Delete");
+    setCard(nextCard);
+    setNextCard(nextCard + 1);
   };
 
   return (
@@ -53,12 +66,12 @@ const Card = () => {
             {/* TODO: use different fonts to differentiate */}
             <p className="">{alien.origin}</p>
           </div>
-          <div className="absolute invisible group-hover:visible bottom-16 right-16 p-2">
+          <div className="absolute invisible group-hover:visible bottom-10 right-10 p-2">
             <button
               className="bg-red-500 rounded-full p-4"
               onClick={() => handleMessage()}
             >
-              <ChatIcon className="text-4xl" />
+              <ChatIcon className="text-3xl" />
             </button>
           </div>
         </div>
