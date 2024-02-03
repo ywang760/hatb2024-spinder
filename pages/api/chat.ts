@@ -1,47 +1,53 @@
-import { useState } from "react";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
+import OpenAI from "openai";
 
-type gptResponse = {
+type GptResponse = {
   content: string;
 };
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<gptResponse>
+  res: NextApiResponse<GptResponse>
 ) {
-  // Handle dialog input submission
-  const handleDialogSubmit = async (dialogInput: string) => {
-    // // Make API call to ChatGPT 4 API with dialogInput
-    // const response = await fetch(
-    //   "https://api.chatgpt.com/v1/chat/completions",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: "Bearer YOUR_API_KEY", // Replace with your ChatGPT 4 API key
-    //     },
-    //     body: JSON.stringify({
-    //       messages: [
-    //         {
-    //           role: "system",
-    //           content: "You: " + dialogInput,
-    //         },
-    //       ],
-    //     }),
-    //   }
-    // );
+  if (req.method !== "POST") {
+    return res.status(405).json({ content: "Method Not Allowed" });
+  }
 
-    // const data = await response.json();
+  const { myInput } = req.body;
 
-    // // Extract the generated response from the API
-    // const generatedResponse = data.choices[0].message.content;
+  try {
+    const openai = new OpenAI({
+      apiKey: "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",
+    });
 
-    // Send the generated response as the API response
-    res.status(200).json({ content: dialogInput });
-  };
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content: "I want you to act like the three-body aliens from three body problem. I want you to respond and answer like the alien using the tone, manner and vocabulary those aliens would use, and think straight forwardly without understanding strategies, cheating, or analogies. Do not write any explanations. Only answer like the aliens.",
+        },
+        {
+          role: "user",
+          content: myInput,
+        },
+      ],
+      temperature: 0.5,
+      max_tokens: 1024,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    });
 
-  if (req.method === "POST") {
-    const { myInput } = req.body;
-    handleDialogSubmit(myInput);
+    // Check if response.choices[0].message.content is not null
+    if (response.choices && response.choices.length > 0 && response.choices[0].message.content !== null) {
+      const messageContent = response.choices[0].message.content;
+      res.status(200).json({ content: messageContent });
+    } else {
+      res.status(500).json({ content: "Failed to fetch a valid response from OpenAI" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ content: "Internal Server Error" });
   }
 }

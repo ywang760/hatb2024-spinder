@@ -6,8 +6,12 @@ export default function Chatbox() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [myInput, setMyInput] = useState("");
 
-  const getResponse = async (myInput: string) => {
-    // call the chat api and fetch a response
+  const handleSend = async (myInput: string) => {
+    setMyInput("");
+    const myMessage: Message = { content: myInput, sender: "You" };
+    setMessages([...messages, myMessage]);
+
+    // call the chatgpt api and fetch a response
     const response = await fetch("api/chat", {
       method: "POST",
       headers: {
@@ -16,15 +20,14 @@ export default function Chatbox() {
       body: JSON.stringify({ myInput }),
     });
 
-    const data = await response.json();
-    const responseMesage: Message = { content: data.content, sender: "Bot" }; //TODO: change name
-    setMessages([...messages, responseMesage]);
-  };
-
-  const handleSend = async (myInput: string) => {
-    setMyInput("");
-    setMessages([...messages, { content: myInput, sender: "You" }]);
-    await getResponse(myInput);
+    if (!response.ok) {
+      console.error("Error fetching chat response");
+      return;
+    } else {
+      const data = await response.json();
+      const responseMesage: Message = { content: data.content, sender: "Bot" }; //TODO: change name
+      setMessages([...messages, myMessage, responseMesage]);
+    }
   };
 
   return (
