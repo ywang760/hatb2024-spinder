@@ -5,12 +5,11 @@ import { Alien } from "@/types/alien";
 import data from "../../data/alien.json";
 
 export default function Chatbox() {
-  const aliens: Alien[] = data;
   const [messages, setMessages] = useState<Message[]>([]);
   const [myInput, setMyInput] = useState("");
-  const [characterDescription, setCharacterDescription] = useState(
-    "I want you to act like the three-body aliens from three body problem. I want you to respond and answer like the alien using the tone, manner and vocabulary those aliens would use, and think straight forwardly without understanding strategies, cheating, or analogies. Do not write any explanations. Only answer like the aliens."
-  );
+  // const [characterDescription, setCharacterDescription] = useState(
+  //   "I want you to act like the three-body aliens from three body problem. I want you to respond and answer like the alien using the tone, manner and vocabulary those aliens would use, and think straight forwardly without understanding strategies, cheating, or analogies. Do not write any explanations. Only answer like the aliens."
+  // );
   const [temperature, setTemperature] = useState(50);
   const [imageURL, setImageURL] = useState(
     "https://media.gq-magazine.co.uk/photos/63bee87a57e25ad39c962d73/16:9/w_1280,c_limit/The-three-body-problem-hp.jpg"
@@ -31,6 +30,13 @@ export default function Chatbox() {
   if (chosenAlien === null) {
     return <div>Choose an alien first</div>;
   }
+  const aliens: Alien[] = data;
+  const alien = aliens[chosenAlien];
+  const alien_json = JSON.stringify(alien);
+
+  const characterDescription = "You are an alien. Here is a description of yourself: \n" + alien_json + "\n You must respond to all prompts in character, using the tone, manner and vocabulary that is representative of your character. Think straight forward without understanding strategies, cheating, or analogies. Do not write any explanations.";
+
+  console.log(characterDescription);
 
   const handleSend = async (myInput: string, characterDescription: string) => {
     setMyInput("");

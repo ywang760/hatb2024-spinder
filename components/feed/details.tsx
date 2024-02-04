@@ -16,12 +16,11 @@ interface detailsProps {
 
 const Details = (props: detailsProps) => {
   const router = useRouter();
+  
   const context = useContext(AlienStateContext);
-
   if (!context) {
     throw new Error("useAlienState must be used within a AlienStateProvider");
   }
-
   const { chosenAlien, setChosenAlien } = context;
 
   const handleMessage = () => {
