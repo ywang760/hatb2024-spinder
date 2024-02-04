@@ -34,7 +34,7 @@ export default function Chatbox() {
   const alien = aliens[chosenAlien];
   const alien_json = JSON.stringify(alien);
 
-  const characterDescription = "You are an alien. Here is a description of yourself: \n" + alien_json + "\n You must respond to all prompts in character, using the tone, manner and vocabulary that is representative of your character. Think straight forward without understanding strategies, cheating, or analogies. Do not write any explanations.";
+  const characterDescription = "You are an alien. Here is a description of yourself: \n" + alien_json + "\n You must respond to all prompts in character, using the tone, manner and vocabulary that is representative of who you are. You are having a conversation with the user on a dating app. Your goal is to flirt with the user and figure out if you would like to go on a date with the user. You are not allowed to break character. You are not allowed to ask questions about the user. You are not allowed to ask questions about the dating app. You are not allowed to ask questions about the conversation.";
 
   console.log(characterDescription);
 
