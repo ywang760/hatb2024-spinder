@@ -1,15 +1,9 @@
 import Navbar from "@/components/navbar";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { Cute_Font, Nanum_Brush_Script, Roboto_Mono } from "next/font/google";
+import { Roboto_Mono } from "next/font/google";
 import { useRouter } from "next/router";
 import { AlienStateProvider } from "../components/AlienContext";
-
-// const inter = Inter({
-//   subsets: ["latin"],
-//   display: "swap",
-//   variable: "--font-inter",
-// });
 
 const roboto_mono = Roboto_Mono({
   subsets: ["latin"],
@@ -23,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div
       className={` ${roboto_mono.variable} flex h-screen bg-opacity-20 bg-cover bg-center `}
-      style={{ backgroundImage: "url('/images/home-bg.jpg')" }}
+      style={{ backgroundImage: "url('/home-bg.jpg')" }}
     >
       {router.pathname !== "/" && <Navbar />}
       <AlienStateProvider>

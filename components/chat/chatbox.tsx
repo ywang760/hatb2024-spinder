@@ -1,6 +1,7 @@
 import { Alien } from "@/types/alien";
 import { Message } from "@/types/chat";
-import { useContext, useState } from "react";
+import Image from "next/image";
+import { useContext, useEffect, useState } from "react";
 import { AlienStateContext } from "../../components/AlienContext";
 import data from "../../data/alien.json";
 
@@ -11,15 +12,40 @@ export default function Chatbox() {
   const [imageURL, setImageURL] = useState(
     "https://media.gq-magazine.co.uk/photos/63bee87a57e25ad39c962d73/16:9/w_1280,c_limit/The-three-body-problem-hp.jpg"
   );
-  const [imageCounter, setImageCounter] = useState(0);
+  const [imageCounter, setImageCounter] = useState(0); // used to trigger image generation when reach 4
+
   const context = useContext(AlienStateContext);
   if (!context) {
     throw new Error("useAlienState must be used within a AlienStateProvider");
   }
+
   const { chosenAlien, setChosenAlien } = context;
+
   if (chosenAlien === null) {
-    return <div>Choose an alien first</div>;
+    return (
+      <div
+        className="flex justify-center items-center text-4xl bg-zinc-50 bg-opacity-20 mt-20 my-20 p-20"
+        style={{ borderRadius: "5rem", fontFamily: "Nanum Brush Script" }}
+      >
+        <div className="flex flex-row items-center space-x-6">
+          <Image
+            src={"https://img.icons8.com/ios/50/high-importance.png"}
+            alt={"warning icon"}
+            width={60}
+            height={60}
+          />
+          <div>Please select an alien from explore first!</div>
+        </div>
+      </div>
+    );
   }
+
+  useEffect(() => {
+    handleSend("reset", "");
+    setTemperature(50);
+    setMessages([]);
+  }, [chosenAlien]);
+
   const aliens: Alien[] = data;
   const alien: Alien = aliens[chosenAlien];
   const alien_json = JSON.stringify(alien);
@@ -54,19 +80,15 @@ export default function Chatbox() {
       console.error("Error fetching chat response");
       return;
     } else {
-      if (myInput === "reset") {
-        setMessages([]); // Clear messages in UI
-        // Consider a dedicated API call for reset if implemented
-        return;
-      }
       const data = await response.json();
       const responseMessage: Message = {
         content: data.content,
         sender: alien.name,
-      }; //TODO: change name
-      await updateStats(data.content);
+      };
       setMessages([...messages, myMessage, responseMessage]);
-      console.log(messages);
+
+      await updateStats(data.content);
+
       setImageCounter(imageCounter + 1);
       if (imageCounter == 4) {
         getImage();
@@ -124,7 +146,6 @@ export default function Chatbox() {
       "Assess the following conversation history and generate a prompt for an image that is representative of it. Be short and concise.";
     const combinedDescription = taskDescription + "\n" + messagesConcatenated;
 
-    console.log(messagesConcatenated);
     const response = await fetch("api/image_prompt", {
       method: "POST",
       headers: {
@@ -169,7 +190,7 @@ export default function Chatbox() {
   // };
 
   // Handle the Enter key press for inputs
-  const handleKeyPress = (e: { key: string; preventDefault: () => void }) => {
+  const handleEnter = (e: { key: string; preventDefault: () => void }) => {
     if (e.key === "Enter") {
       e.preventDefault();
       handleSend(myInput, characterDescription);
@@ -177,16 +198,19 @@ export default function Chatbox() {
   };
 
   return (
-    <div className="flex flex-col h-screen">
-      <img
+    <div className="flex flex-col h-full w-full">
+      {/* TODO: fix image */}
+      {/* <Image
         className="fixed inset-0 w-full h-full object-cover"
         src={imageURL}
         alt="image description"
         style={{ zIndex: -1 }}
-      />
-      <div className="flex flex-col relative z-10 p-6 flex-grow overflow-auto">
-        <div className="relative pt-1">
-          <div className="flex mb-2 items-center justify-between font-mono pb-4">
+      /> */}
+
+      <div className="flex flex-col p-6 flex-grow overflow-auto z-10">
+        {/* Progress bar section */}
+        <div className="pt-1 px-8">
+          <div className="flex items-center justify-between font-mono pb-4">
             <div>
               <span className="text-xl font-semibold inline-block py-1 px-2 uppercase rounded text-primary-200 bg-black">
                 {aliens[chosenAlien].name} Relationship Temperature
@@ -209,32 +233,35 @@ export default function Chatbox() {
           </div>
         </div>
 
-        <div
-          className="overflow-auto p-4 flex-grow"
-          style={{ maxHeight: "calc(100vh - 160px)" }}
-        >
+        <div className="overflow-auto p-4 flex-grow">
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`mb-4 p-2 rounded w-max ${
+              className={`mb-4 p-2 rounded ${
                 message.sender === "You"
                   ? "bg-blue-200 ml-auto"
                   : "bg-green-200 mr-auto"
               }`}
               style={{
                 wordWrap: "break-word",
-                maxWidth: "80%",
-                padding: "10px",
+                maxWidth: "60%",
               }}
             >
-              <p className="font-bold font-nanum text-2xl">{message.sender}</p>
+              <p
+                className="font-bold text-2xl"
+                style={{ fontFamily: "Nanum Brush Script" }}
+              >
+                {message.sender}
+              </p>
               <p>{message.content}</p>
             </div>
           ))}
         </div>
       </div>
+
+      {/* input region below */}
       <div
-        className="fixed inset-x-0 bottom-0 p-4 z-20"
+        className="bottom-0 p-4 z-20"
         style={{ background: "rgba(0, 0, 0, 0.6)" }}
       >
         <div className="mx-auto">
@@ -247,26 +274,12 @@ export default function Chatbox() {
               color: "#000",
             }}
           >
-            {/* <button
-              onClick={() => clearHistory()}
-              className="px-4 py-2 text-sm bg-primary-600 text-white font-bold uppercase hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-opacity-50"
-              style={{ textShadow: "0 1px 2px rgba(0, 0, 0, 0.5)" }}
-            >
-              Clear
-            </button>
-            <input
-              className="flex-grow mx-2 p-2 text-sm text-zinc-800 placeholder-zinc-500 bg-white bg-opacity-50 border-none rounded"
-              placeholder="Character description..."
-              value={characterDescription}
-              onChange={(e) => setCharacterDescription(e.target.value)}
-              onKeyDown={handleKeyPress}
-            /> */}
             <input
               className="flex-grow mx-2 p-2 text-sm text-zinc-800 placeholder-zinc-500 bg-white bg-opacity-50 border-none rounded"
               placeholder="Write your message..."
               value={myInput}
               onChange={(e) => setMyInput(e.target.value)}
-              onKeyDown={handleKeyPress}
+              onKeyDown={handleEnter}
             />
             <button
               className="px-4 py-2 text-sm bg-primary-500 text-white font-bold uppercase hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50"

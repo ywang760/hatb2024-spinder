@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className="flex flex-col items-center w-80 h-full p-6 bg-primary-500 text-zinc-50 justify-around font-mono">
+    <nav className="flex flex-col items-center h-full p-6 bg-primary-500 text-zinc-50 justify-around font-mono">
       <div className="flex flex-col items-center mb-20">
         <Image
           src="/logo.png"
@@ -40,7 +40,7 @@ const Navbar = () => {
           /* Add logout functionality here */
         }}
       >
-        <LogoutIcon />
+        <LogoutIcon style={{ transform: "rotate(180deg)" }} />
       </Link>
     </nav>
   );
