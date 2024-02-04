@@ -105,7 +105,7 @@ export default function Chatbox(props: ChatboxProps) {
       await updateStats(data.content);
 
       setImageCounter(imageCounter + 1);
-      if (imageCounter == 1) {
+      if (imageCounter == 3) {
         getImage(); // TODO: fix image
         setImageCounter(0);
       }
@@ -145,8 +145,9 @@ export default function Chatbox(props: ChatboxProps) {
     }
   };
 
-  // Get the prompt to use for generating the image
+  // // Get the prompt to use for generating the image
   const getImagePrompt = async (): Promise<string> => {
+    console.log("image getting");
     const messagesConcatenated = messages
       .map((obj) =>
         Object.entries(obj)
