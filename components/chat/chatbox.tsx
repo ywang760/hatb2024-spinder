@@ -1,27 +1,17 @@
+import { Alien } from "@/types/alien";
 import { Message } from "@/types/chat";
 import { useContext, useState } from "react";
 import { AlienStateContext } from "../../components/AlienContext";
-import { Alien } from "@/types/alien";
 import data from "../../data/alien.json";
 
 export default function Chatbox() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [myInput, setMyInput] = useState("");
-  // const [characterDescription, setCharacterDescription] = useState(
-  //   "I want you to act like the three-body aliens from three body problem. I want you to respond and answer like the alien using the tone, manner and vocabulary those aliens would use, and think straight forwardly without understanding strategies, cheating, or analogies. Do not write any explanations. Only answer like the aliens."
-  // );
   const [temperature, setTemperature] = useState(50);
   const [imageURL, setImageURL] = useState(
     "https://media.gq-magazine.co.uk/photos/63bee87a57e25ad39c962d73/16:9/w_1280,c_limit/The-three-body-problem-hp.jpg"
   );
   const [imageCounter, setImageCounter] = useState(0);
-  // const [characterDescription, setCharacterDescription] = useState(
-  //   "I want you to act like the three-body aliens from three body problem. I want \
-  //   you to respond and answer like the alien using the tone, manner and vocabulary \
-  //    those aliens would use, and think straight forwardly without understanding strategies, \
-  //    cheating, or analogies. Do not write any explanations. Only answer like the aliens. \
-  //    Do not tell me anything about chatgpt. Do not be my assistant or assist me in any way."
-  // );
   const context = useContext(AlienStateContext);
   if (!context) {
     throw new Error("useAlienState must be used within a AlienStateProvider");
@@ -31,12 +21,13 @@ export default function Chatbox() {
     return <div>Choose an alien first</div>;
   }
   const aliens: Alien[] = data;
-  const alien = aliens[chosenAlien];
+  const alien: Alien = aliens[chosenAlien];
   const alien_json = JSON.stringify(alien);
 
-  const characterDescription = "You are an alien. Here is a description of yourself: \n" + alien_json + "\n You must respond to all prompts in character, using the tone, manner and vocabulary that is representative of who you are. You are having a conversation with the user on a dating app. Your goal is to flirt with the user and figure out if you would like to go on a date with the user. You are not allowed to break character. You are not allowed to ask questions about the user. You are not allowed to ask questions about the dating app. You are not allowed to ask questions about the conversation.";
-
-  console.log(characterDescription);
+  const characterDescription =
+    "You are an alien. Here is a description of yourself: \n" +
+    alien_json +
+    "\n You must respond to all prompts in character, using the tone, manner and vocabulary that is representative of who you are. You are having a conversation with the user on a dating app. Your goal is to flirt with the user and figure out if you would like to go on a date with the user. You are not allowed to break character. You are not allowed to ask questions about the user. You are not allowed to ask questions about the dating app. You are not allowed to ask questions about the conversation.";
 
   const handleSend = async (myInput: string, characterDescription: string) => {
     setMyInput("");
@@ -64,7 +55,7 @@ export default function Chatbox() {
       const data = await response.json();
       const responseMessage: Message = {
         content: data.content,
-        sender: "Alien",
+        sender: alien.name,
       }; //TODO: change name
       await updateStats(data.content);
       setMessages([...messages, myMessage, responseMessage]);
@@ -120,7 +111,6 @@ export default function Chatbox() {
           .join(", ")
       )
       .join("; ");
-    console.log(messagesConcatenated);
     const characterDescription =
       "You will be assessing a conversation history and determining what is the best prompt to generate an image representative of it.";
     const taskDescription =
@@ -165,16 +155,16 @@ export default function Chatbox() {
     }
   };
 
-  const clearHistory = () => {
-    handleSend("reset", characterDescription);
-    setTemperature(50);
-    setMessages([]);
-  };
+  // const clearHistory = () => {
+  //   handleSend("reset", characterDescription);
+  //   setTemperature(50);
+  //   setMessages([]);
+  // };
 
   // Handle the Enter key press for inputs
   const handleKeyPress = (e: { key: string; preventDefault: () => void }) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Prevent the default action to avoid forubmission or any other unintended behavior
+      e.preventDefault();
       handleSend(myInput, characterDescription);
     }
   };
@@ -191,13 +181,13 @@ export default function Chatbox() {
         <div className="relative pt-1">
           <div className="flex mb-2 items-center justify-between font-mono pb-4">
             <div>
-              <span className="text-xl font-semibold inline-block py-1 px-2 uppercase rounded text-blue-200 bg-black">
-                {aliens[chosenAlien].name} Relationship Temp
+              <span className="text-xl font-semibold inline-block py-1 px-2 uppercase rounded text-primary-200 bg-black">
+                {aliens[chosenAlien].name} Relationship Temperature
               </span>
             </div>
             <div className="text-right">
               <span
-                className="font-semibold inline-block text-blue-200 bg-black text-xl py-1 px-2"
+                className="font-semibold inline-block text-primary-200 bg-black text-xl py-1 px-2"
                 style={{ borderRadius: "0.5rem" }}
               >
                 {temperature}%
@@ -240,8 +230,7 @@ export default function Chatbox() {
         className="fixed inset-x-0 bottom-0 p-4 z-20"
         style={{ background: "rgba(0, 0, 0, 0.6)" }}
       >
-        <div className="mx-auto" style={{ maxWidth: "calc(100% - 2rem)" }}>
-          {" "}
+        <div className="mx-auto">
           {/* Adjust the maxWidth to match the temperature bar above */}
           <div
             className="flex items-center justify-between rounded-lg overflow-hidden shadow-lg"
@@ -251,29 +240,29 @@ export default function Chatbox() {
               color: "#000",
             }}
           >
-            <button
+            {/* <button
               onClick={() => clearHistory()}
-              className="px-4 py-2 text-sm bg-purple-600 text-white font-bold uppercase hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+              className="px-4 py-2 text-sm bg-primary-600 text-white font-bold uppercase hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-opacity-50"
               style={{ textShadow: "0 1px 2px rgba(0, 0, 0, 0.5)" }}
             >
               Clear
             </button>
             <input
-              className="flex-grow mx-2 p-2 text-sm text-gray-800 placeholder-gray-500 bg-white bg-opacity-50 border-none rounded"
+              className="flex-grow mx-2 p-2 text-sm text-zinc-800 placeholder-zinc-500 bg-white bg-opacity-50 border-none rounded"
               placeholder="Character description..."
               value={characterDescription}
               onChange={(e) => setCharacterDescription(e.target.value)}
               onKeyDown={handleKeyPress}
-            />
+            /> */}
             <input
-              className="flex-grow mx-2 p-2 text-sm text-gray-800 placeholder-gray-500 bg-white bg-opacity-50 border-none rounded"
+              className="flex-grow mx-2 p-2 text-sm text-zinc-800 placeholder-zinc-500 bg-white bg-opacity-50 border-none rounded"
               placeholder="Write your message..."
               value={myInput}
               onChange={(e) => setMyInput(e.target.value)}
               onKeyDown={handleKeyPress}
             />
             <button
-              className="px-4 py-2 text-sm bg-blue-500 text-white font-bold uppercase hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              className="px-4 py-2 text-sm bg-primary-500 text-white font-bold uppercase hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50"
               onClick={() => handleSend(myInput, characterDescription)}
             >
               Send

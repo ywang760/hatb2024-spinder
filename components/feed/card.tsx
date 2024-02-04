@@ -1,12 +1,12 @@
 import Details from "@/components/feed/details";
+import { Alien } from "@/types/alien";
 import ChatIcon from "@mui/icons-material/Chat";
 import ClearIcon from "@mui/icons-material/Clear";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { Alien } from "@/types/alien";
-import data from "../../data/alien.json";
 import { AlienStateContext } from "../../components/AlienContext";
-import { useRouter } from 'next/router';
+import data from "../../data/alien.json";
 
 const aliens: Alien[] = data;
 const num_aliens = aliens.length;
@@ -32,7 +32,7 @@ const Card = ({ card, setCard, allCards, setAllCards }: CardProps) => {
 
   const handleMessage = () => {
     setChosenAlien(card);
-    router.push('/chat');
+    router.push("/chat");
   };
 
   const handleDelete = () => {
@@ -76,7 +76,10 @@ const Card = ({ card, setCard, allCards, setAllCards }: CardProps) => {
             style={{ borderRadius: "5rem" }}
             className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition duration-500"
           ></div>
-          <div className="absolute invisible group-hover:visible bottom-12 left-12 p-2 text-left font-cute">
+          <div
+            className="absolute invisible group-hover:visible bottom-12 left-12 p-2 text-left"
+            style={{ fontFamily: "Nanum Brush Script" }}
+          >
             <h1 className="text-8xl font-bold pb-2">{alien.name}</h1>
             <p className="text-4xl">{alien.species}</p>
             <p className="text-4xl">{alien.origin}</p>

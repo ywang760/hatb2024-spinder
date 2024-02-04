@@ -1,6 +1,6 @@
 interface Alien {
   name: string;
-  profilePicture?: string; // TODO:
+  profilePicture?: string;
   shortBio?: string;
 
   species: string;

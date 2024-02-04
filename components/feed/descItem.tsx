@@ -8,7 +8,7 @@ interface pps {
 
 const DescItem = (props: pps) => {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center text-3xl">
       <div className="flex space-x-2 items-center">
         <Image
           src={props.iconsrc}

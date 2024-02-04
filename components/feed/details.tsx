@@ -1,11 +1,13 @@
 import { Alien } from "@/types/alien";
+import "@fontsource/cute-font";
+import "@fontsource/nanum-brush-script";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Box, Modal } from "@mui/material";
 import Image from "next/image";
-import DescItem from "./descItem";
-import { AlienStateContext } from "../../components/AlienContext";
+import { useRouter } from "next/router";
 import { useContext } from "react";
-import { useRouter } from 'next/router';
+import { AlienStateContext } from "../../components/AlienContext";
+import DescItem from "./descItem";
 
 interface detailsProps {
   id: number;
@@ -16,7 +18,7 @@ interface detailsProps {
 
 const Details = (props: detailsProps) => {
   const router = useRouter();
-  
+
   const context = useContext(AlienStateContext);
   if (!context) {
     throw new Error("useAlienState must be used within a AlienStateProvider");
@@ -25,7 +27,7 @@ const Details = (props: detailsProps) => {
 
   const handleMessage = () => {
     setChosenAlien(props.id);
-    router.push('/chat');
+    router.push("/chat");
   };
 
   return (
@@ -39,13 +41,14 @@ const Details = (props: detailsProps) => {
           borderRadius: "5rem",
         }}
         className="flex flex-row p-10 space-x-4 bg-opacity-80 bg-zinc-300 text-zinc-800 min-w-[70vw] justify-center"
+        style={{ fontFamily: "Cute Font" }}
       >
-        <div className="flex flex-col items-center space-y-4 w-1/2 ">
+        <div className="flex flex-col items-center space-y-4 w-1/2">
           <div
             className="flex flex-col items-center bg-zinc-50 p-8 w-full"
             style={{ borderRadius: "2rem" }}
           >
-            <div className="w-56 h-56 rounded-full overflow-hidden relative mb-10">
+            <div className="w-56 h-56 rounded-full overflow-hidden relative mb-4">
               <Image
                 src={props.alien.profilePicture as string} // Path to the alien's profile picture
                 alt={props.alien.name + " profile picture"} // Name of the alien as alt text
@@ -53,8 +56,8 @@ const Details = (props: detailsProps) => {
                 objectFit="cover"
               />
             </div>
-            <h1 className="text-2xl mb-2">{props.alien.name}</h1>
-            <h3 className="font-semibold">
+            <h1 className="text-6xl mb-2">{props.alien.name}</h1>
+            <h3 className="text-2xl font-semibold">
               {props.alien.occupation} @ {props.alien.currentLocation}
             </h3>
             <hr className="w-2/3 mx-auto border-1 border-zinc-800 my-4" />
@@ -72,10 +75,10 @@ const Details = (props: detailsProps) => {
             </div>
           </div>
           <div
-            className=" flex bg-zinc-50 p-8 w-full min-h-[20vh] justify-center items-center font-nanum"
-            style={{ borderRadius: "2rem" }}
+            className="flex bg-zinc-50 p-4 w-full min-h-[20vh] justify-center items-center text-3xl"
+            style={{ borderRadius: "2rem", fontFamily: "Nanum Brush Script" }}
           >
-            <p className="font-nanum">{props.alien.shortBio}</p>
+            <p>{props.alien.shortBio}</p>
           </div>
         </div>
 
@@ -100,7 +103,7 @@ const Details = (props: detailsProps) => {
               iconsrc={"https://img.icons8.com/color/48/learning.png"}
             />
           </div>
-          <div className="flex space-x-4 w-full">
+          <div className="flex space-x-4 w-full text-4xl">
             <div
               className="bg-zinc-50 p-6 w-1/2 justify-center items-center flex flex-col space-y-2"
               style={{ borderRadius: "2rem" }}

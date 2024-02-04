@@ -17,26 +17,12 @@ const roboto_mono = Roboto_Mono({
   variable: "--font-roboto-mono",
 });
 
-const cute_font = Cute_Font({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400"],
-  variable: "--font-cute",
-});
-
-const nanum = Nanum_Brush_Script({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-nanum",
-  weight: ["400"],
-});
-
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   return (
     <div
-      className={` ${roboto_mono.variable} ${cute_font.variable} ${nanum.variable} flex h-screen bg-opacity-20 bg-cover bg-center `}
+      className={` ${roboto_mono.variable} flex h-screen bg-opacity-20 bg-cover bg-center `}
       style={{ backgroundImage: "url('/images/home-bg.jpg')" }}
     >
       {router.pathname !== "/" && <Navbar />}
