@@ -15,7 +15,7 @@ const Navbar = () => {
           height={200}
           className="rounded-full"
         />
-        <span className="text-5xl mt-20">name</span>
+        <span className="text-5xl mt-20">Spindle</span>
       </div>
       <div className="flex flex-col gap-8 mb-8">
         <Link
