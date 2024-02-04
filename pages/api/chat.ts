@@ -24,11 +24,11 @@ export default async function handler(
   if (req.method !== "POST") {
     return res.status(405).json({ content: "Method Not Allowed" });
   }
-  console.log("hist: ", conversationHistory)
+  // console.log("hist: ", conversationHistory)
 
   try {
     const openai = new OpenAI({
-      apiKey: "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", // Replace with your actual API key
+      apiKey: process.env.OPEN_AI_API_KEY, // Replace with your actual API key
     });
 
     // Initialize conversation history with character description if it's the first request
