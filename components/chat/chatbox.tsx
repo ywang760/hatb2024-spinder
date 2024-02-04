@@ -1,7 +1,7 @@
 import { Alien } from "@/types/alien";
 import { Message } from "@/types/chat";
 import Image from "next/image";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AlienStateContext } from "../../components/AlienContext";
 import data from "../../data/alien.json";
 
@@ -12,11 +12,13 @@ export default function Chatbox() {
   const [imageURL, setImageURL] = useState(
     "https://media.gq-magazine.co.uk/photos/63bee87a57e25ad39c962d73/16:9/w_1280,c_limit/The-three-body-problem-hp.jpg"
   );
-  const [imageCounter, setImageCounter] = useState(0);
+  const [imageCounter, setImageCounter] = useState(0); // used to trigger image generation when reach 4
+
   const context = useContext(AlienStateContext);
   if (!context) {
     throw new Error("useAlienState must be used within a AlienStateProvider");
   }
+
   const { chosenAlien, setChosenAlien } = context;
 
   if (chosenAlien === null) {
@@ -38,11 +40,17 @@ export default function Chatbox() {
     );
   }
 
+  useEffect(() => {
+    handleSend("reset", "");
+    setTemperature(50);
+    setMessages([]);
+  }, [chosenAlien]);
+
   const aliens: Alien[] = data;
   const alien: Alien = aliens[chosenAlien];
   const alien_json = JSON.stringify(alien);
 
-  const characterDescription =
+  const characterDescription: string =
     "You are an alien. Here is a description of yourself: \n" +
     alien_json +
     "\n You must respond to all prompts in character, using the tone, manner and vocabulary that is representative of who you are. You are having a conversation with the user on a dating app. Your goal is to flirt with the user and figure out if you would like to go on a date with the user. You are not allowed to break character. You are not allowed to ask questions about the user. You are not allowed to ask questions about the dating app. You are not allowed to ask questions about the conversation.";
@@ -65,19 +73,15 @@ export default function Chatbox() {
       console.error("Error fetching chat response");
       return;
     } else {
-      if (myInput === "reset") {
-        setMessages([]); // Clear messages in UI
-        // Consider a dedicated API call for reset if implemented
-        return;
-      }
       const data = await response.json();
       const responseMessage: Message = {
         content: data.content,
         sender: alien.name,
       };
-      await updateStats(data.content);
       setMessages([...messages, myMessage, responseMessage]);
-      console.log(messages);
+
+      await updateStats(data.content);
+
       setImageCounter(imageCounter + 1);
       if (imageCounter == 4) {
         getImage();
@@ -135,7 +139,6 @@ export default function Chatbox() {
       "Assess the following conversation history and generate a prompt for an image that is representative of it. Be short and concise.";
     const combinedDescription = taskDescription + "\n" + messagesConcatenated;
 
-    console.log(messagesConcatenated);
     const response = await fetch("api/image_prompt", {
       method: "POST",
       headers: {
@@ -180,7 +183,7 @@ export default function Chatbox() {
   // };
 
   // Handle the Enter key press for inputs
-  const handleKeyPress = (e: { key: string; preventDefault: () => void }) => {
+  const handleEnter = (e: { key: string; preventDefault: () => void }) => {
     if (e.key === "Enter") {
       e.preventDefault();
       handleSend(myInput, characterDescription);
@@ -188,7 +191,7 @@ export default function Chatbox() {
   };
 
   return (
-    <div className="flex flex-col h-screen w-full">
+    <div className="flex flex-col h-full w-full">
       {/* TODO: fix image */}
       {/* <Image
         className="fixed inset-0 w-full h-full object-cover"
@@ -197,10 +200,10 @@ export default function Chatbox() {
         style={{ zIndex: -1 }}
       /> */}
 
-      <div className="flex flex-col p-6 flex-grow overflow-auto">
+      <div className="flex flex-col p-6 flex-grow overflow-auto z-10">
         {/* Progress bar section */}
-        <div className="pt-1  px-8">
-          <div className="flex mb-2 items-center justify-between font-mono pb-4">
+        <div className="pt-1 px-8">
+          <div className="flex items-center justify-between font-mono pb-4">
             <div>
               <span className="text-xl font-semibold inline-block py-1 px-2 uppercase rounded text-primary-200 bg-black">
                 {aliens[chosenAlien].name} Relationship Temperature
@@ -269,7 +272,7 @@ export default function Chatbox() {
               placeholder="Write your message..."
               value={myInput}
               onChange={(e) => setMyInput(e.target.value)}
-              onKeyDown={handleKeyPress}
+              onKeyDown={handleEnter}
             />
             <button
               className="px-4 py-2 text-sm bg-primary-500 text-white font-bold uppercase hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50"

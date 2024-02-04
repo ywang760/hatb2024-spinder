@@ -22,15 +22,3 @@
   border: 1px solid #ffffff; /* Add a pixelated border effect */
   box-shadow: 0 0 10px #00dbde, 0 0 20px #fc00ff; /* Glowing effect */
 }
-
-/* Optional: Add a pixelated effect */
-.progress-bar::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url("data:image/png;base64,...") repeat; /* Use a small pixel pattern */
-  opacity: 0.2;
-}
