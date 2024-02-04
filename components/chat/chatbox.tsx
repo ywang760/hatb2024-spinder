@@ -26,7 +26,8 @@ export default function Chatbox(props: ChatboxProps) {
         You are not allowed to ask questions about the user. You are not allowed to ask questions\
          about the dating app. You are not allowed to ask questions about the conversation.\
          You are not allowed to talk anything about chatgpt or assist the user in anyway.\
-         You should never start the conversation with Ah. Never.";
+         You should never start the conversation with Ah. Never. You should never reply\
+         for more than 50 words.";
 
   useEffect(() => {
     // reset everything when the alien changes
@@ -98,7 +99,7 @@ export default function Chatbox(props: ChatboxProps) {
     const characterDescription =
       "You will be assessing how well the relationship is going from the responses of the participant.";
     const taskDescription =
-      "Give a single numerical value from 0 to 20 on how this dialog affects the relationship of this person, \
+      "Give a single numerical value from 0 to 10 on how this dialog affects the relationship of this person, \
       0 means their relationship is very negative, and 20 means their relationship is very positive. \
       Any number in between is a linear interpolation between the two relationship acessments. \
       For example: I am not interested in you. This gets 0. \
@@ -119,7 +120,7 @@ export default function Chatbox(props: ChatboxProps) {
       const data = await response.json();
       const tempChange = Number(data.content);
       if (!isNaN(tempChange)) {
-        setTemperature(temperature + tempChange - 10);
+        setTemperature(temperature + tempChange - 5);
       } else {
         console.log("input temperature value is not a number");
       }
