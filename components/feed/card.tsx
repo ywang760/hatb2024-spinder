@@ -4,21 +4,22 @@ import ChatIcon from "@mui/icons-material/Chat";
 import ClearIcon from "@mui/icons-material/Clear";
 import OutboundIcon from "@mui/icons-material/Outbound";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import data from "../../data/alien.json";
 
 const aliens: Alien[] = data;
+const num_aliens = aliens.length;
 
 type CardProps = {
-  id: number;
+  card: number;
   setCard: (card: number) => void;
-  nextCard: number;
-  setNextCard: (card: number) => void;
+  allCards: number[];
+  setAllCards: (cards: number[]) => void;
 };
 
-const Card = ({ id, setCard, nextCard, setNextCard }: CardProps) => {
+const Card = ({ card, setCard, allCards, setAllCards }: CardProps) => {
   // TODO: change mock data
-  const alien = aliens[id];
+  const alien = aliens[card];
   const [showDetails, setShowDetails] = useState<boolean>(false);
 
   if (!alien) {
@@ -30,9 +31,22 @@ const Card = ({ id, setCard, nextCard, setNextCard }: CardProps) => {
   };
 
   const handleDelete = () => {
-    console.log("Delete");
-    setCard(nextCard);
-    setNextCard(nextCard + 1);
+    console.log("Delete", card);
+    const otherCards = allCards.filter((c) => c !== card);
+    let newCard = card + 1;
+    while (otherCards.includes(newCard) || newCard >= num_aliens) {
+      if (newCard >= num_aliens) {
+        newCard = 0;
+        continue;
+      }
+      if (newCard === card) {
+        break;
+      }
+      newCard++;
+    }
+    setCard(newCard);
+    setAllCards([...otherCards, newCard]);
+    console.log("New card", newCard);
   };
 
   return (
