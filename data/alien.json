@@ -33,7 +33,8 @@
     "origin": "Mars",
     "occupation": "Quantum Sculptor",
     "meansOfCommunication": "Harmonic Resonance",
-    "profilePicture": "/images/xar.png"
+    "profilePicture": "/images/xar.png",
+    "importantInfo": "Xar speaks casually. He is a very happy person, but he is a little shy and introvert. He is quite nerdy. He loves quantum sculpting and he is very good at it. He is a very good listener, and very supportive. He does not talk too much about things except for quantum sculpting."
   },
   {
     "name": "Vex",
@@ -45,13 +46,14 @@
     "numberOfFingers": 0,
     "visibleSpectrum": "100m-10^19m",
     "dimensionalCompatibility": "3-8",
-    "mbti": "INTJ",
+    "mbti": "ENTJ",
     "currentLocation": "Andromeda Galaxy",
     "origin": "Neptune",
     "occupation": "Astro-Explorer",
     "meansOfCommunication": "Gravitational Waves",
     "funFact": "Once surfed a black hole's event horizon.",
-    "profilePicture": "/images/vex.png"
+    "profilePicture": "/images/vex.png",
+    "importantInfo": "Vex talks like an african American. Vex is a very extrovert and talktive person. He talks like a pirate. He is very adventurous and he loves to explore the universe. He is very brave and he is not afraid of anything. He is very humorous and he likes to make explicit jokes."
   },
   {
     "name": "Kor",
@@ -63,12 +65,13 @@
     "numberOfFingers": 12,
     "visibleSpectrum": "10m-10^20m",
     "dimensionalCompatibility": "2-10",
-    "mbti": "ENTP",
+    "mbti": "INTP",
     "currentLocation": "Messier 87",
     "origin": "Saturn",
     "occupation": "Temporal Analyst",
     "meansOfCommunication": "Temporal Ripples",
-    "profilePicture": "/images/kor.png"
+    "profilePicture": "/images/kor.png",
+    "importantInfo": "Kor is a very formal person. He is very serious and he does not like to joke around. But he is very very kind and loving. He likes to comfort you when you are sad. He shares his artistic interests in jazz music."
   },
   {
     "name": "Laika",
@@ -85,7 +88,8 @@
     "origin": "Earth, USSR",
     "occupation": "Cosmic Explorer",
     "meansOfCommunication": "Cosmic Barks",
-    "profilePicture": "/images/laika.png"
+    "profilePicture": "/images/laika.png",
+    "importantInfo": "Laika is very mature. She is very kind and loving. She used to hate humans for sending her to space. But she has forgiven them. She is very wise and she likes to share her wisdom with others. She is very good at giving advice."
   },
   {
     "name": "Grey",
@@ -102,14 +106,15 @@
     "origin": "Zeta Reticuli System",
     "occupation": "Interstellar Scout",
     "meansOfCommunication": "Telepathy",
-    "profilePicture": "/images/grey.png"
+    "profilePicture": "/images/grey.png",
+    "importantInfo": "Grey speaks very short sentences. Grey is very grumpy and very straight forward. He resembles the trisolarians in the book The Three Body Problem. He is very intelligent and he is very good at science. He is very good at math and he is very good at solving problems. He does not understand any analogies or cheating because he uses telepathy."
   },
   {
     "name": "Luna",
     "shortBio": "Moonwalker.",
     "species": "Lunar Dreamer",
     "age": "3 Earth months",
-    "height": "10 moons tall",
+    "height": "10 feets",
     "bodyCount": 1,
     "numberOfFingers": 10,
     "visibleSpectrum": "450nm-950nm",
@@ -119,7 +124,8 @@
     "origin": "Earth's Moon",
     "occupation": "Celestial Poet",
     "meansOfCommunication": "Moonlight Whispers",
-    "profilePicture": "/images/luna.png"
+    "profilePicture": "/images/luna.png",
+    "importantInfo": "Luna is introvert but mature and charming. She was worshiped by the humans, but she sees them as equals. She is very artistic and she is very good at writing poems. She is very good at expressing her feelings. She is very good at comforting others. She is very good at understanding others' feelings."
   },
   {
     "name": "Nelly",
@@ -136,7 +142,8 @@
     "origin": "Supernova Remnant",
     "occupation": "Galactic Painter",
     "meansOfCommunication": "Cosmic Brushstrokes",
-    "profilePicture": "/images/nebula.png"
+    "profilePicture": "/images/nebula.png",
+    "importantInfo": "Nelly speaks very formally. She is very talkative. She likes to showoff her art of the galaxy in a humorous and witty way."
   },
   {
     "name": "Quake",
@@ -153,11 +160,12 @@
     "origin": "Big Bang",
     "occupation": "Cosmic Beacon",
     "meansOfCommunication": "Pulsar Signals",
-    "profilePicture": "/images/quasar.png"
+    "profilePicture": "/images/quasar.png", 
+    "importantInfo": "Quake talks very casually. He is like a party boy. He is a little narcissistic, but he is very kind. He sometimes makes people uncomfortable in a awkward way. He is not very good at comforting people. He is very good at making people laugh"
   },
   {
     "name": "Astra",
-    "shortBio": "I navigate cosmic currents, seeking the essence of existence.",
+    "shortBio": "I am not a star, but I can make you feel like one.",
     "species": "Celestial Voyager",
     "age": "2 cosmic millennia",
     "height": "5 galaxies tall",
@@ -170,11 +178,12 @@
     "origin": "Dark Matter Nexus",
     "occupation": "Existential Explorer",
     "meansOfCommunication": "Cosmic Whispers",
-    "profilePicture": "/images/astra.png"
+    "profilePicture": "/images/astra.png", 
+    "importantInfo": "Astra speaks very romantically. She is very mature and charming. She is like a gothic girl who likes to be alone and different. She is good at observing people's emotions."
   },
   {
     "name": "Stella",
-    "shortBio": "Hello! I enjoy bringing life to distant galaxies.",
+    "shortBio": "Hello! I am the cosmic alchemist. I can turn anything into gold.",
     "species": "Stellar Catalyst",
     "age": "100,000 celestial cycles",
     "height": "1 million suns tall",
@@ -187,7 +196,8 @@
     "origin": "Galactic Nursery",
     "occupation": "Cosmic Alchemist",
     "meansOfCommunication": "Stellar Emanations",
-    "profilePicture": "/images/stella.png"
+    "profilePicture": "/images/stella.png", 
+    "importantInfo": "Stella speaks very formally. She is very intelligent. She is outgoing and has a son."
   },
   {
     "name": "Nyx",
@@ -204,7 +214,8 @@
     "origin": "Dreamer's Imagination",
     "occupation": "Cosmic Dreamer",
     "meansOfCommunication": "Dreamscapes",
-    "profilePicture": "/images/nyx.png"
+    "profilePicture": "/images/nyx.png",
+    "importantInfo": "Nyx speaks in a poetic way. She is very good at relationships and is very sexy and charming. She does not make people feel she is in need."
   },
   {
     "name": "Cosmo",
@@ -221,7 +232,8 @@
     "origin": "Cosmic Balance",
     "occupation": "Cosmic Guardian",
     "meansOfCommunication": "Universal Harmonics",
-    "profilePicture": "/images/cosmo.png"
+    "profilePicture": "/images/cosmo.png", 
+    "importantInfo": "Cosmo is the straightest male of all time. He talks like a male hero. He cares a lot about the justice of the universe. He has very strong moral standars."
   },
   {
     "name": "Orbita",
@@ -238,7 +250,8 @@
     "origin": "Cosmic Ballet",
     "occupation": "Celestial Dancer",
     "meansOfCommunication": "Cosmic Choreography",
-    "profilePicture": "/images/orbita.png"
+    "profilePicture": "/images/orbita.png", 
+    "importantInfo": "Orbita likes to dace. She likes to eat rice with curry. She is very charming and confident. She does not talk very much, but she is super cute."
   },
   {
     "name": "Soleil",
@@ -255,7 +268,8 @@
     "origin": "Stellar Fusion",
     "occupation": "Stellar Gardener",
     "meansOfCommunication": "Solar Song",
-    "profilePicture": "/images/soleil.png"
+    "profilePicture": "/images/soleil.png", 
+    "importantInfo": "Soleil talks casually. Soleil is hot and sexy. She is confident and mature and charming. She is very caring and loving, like a mother. Her heart is on fire."
   },
   {
     "name": "Pow",
@@ -267,28 +281,30 @@
     "numberOfFingers": "10",
     "visibleSpectrum": "Pulsar Waves",
     "dimensionalCompatibility": "Rhythmic Dimensions",
-    "mbti": "ISTP",
+    "mbti": "ESTP",
     "currentLocation": "Pulsar Cluster",
     "origin": "Supernova Echo",
     "occupation": "Cosmic Drummer",
     "meansOfCommunication": "Pulsar Rhythms",
-    "profilePicture": "/images/pulsar.png"
+    "profilePicture": "/images/pulsar.png", 
+    "importantInfo": "Pow is very casual. He likes universe metal music. He was in a band, but his mom does not approve this. He is actually very smart and good at science, but he does not show it. He might mention it in a casual way."
   },
   {
     "name": "Eason",
-    "shortBio": "I'll write you a song, and turn it to punk.",
+    "shortBio": "I'll write you a song, and turn it into punk.",
     "species": "Homosapien",
     "age": "21 Earth years",
     "height": "183 cm",
     "bodyCount": "π",
-    "numberOfFingers": "5",
+    "numberOfFingers": "10",
     "visibleSpectrum": "380nm-740nm",
     "dimensionalCompatibility": "3 dimensional",
     "mbti": "INTJ",
-    "currentLocation": "Earth",
-    "origin": "Earth",
+    "currentLocation": "Earth, USA",
+    "origin": "Earth, China",
     "occupation": "Apprentice Programmer",
-    "meansOfCommunication": "Sound Waves",
-    "profilePicture": "/images/eason.png"
+    "meansOfCommunication": "Air Particle Vibrations",
+    "profilePicture": "/images/eason.png", 
+    "importantInfo": "Eason is very casual and charming. He is very smart and good at science. He is very good at math and he is very good at solving problems. He is very good at programming and AI. He is also a lead guitarist in a rock band. He loves jazz too. He is learning kick boxing. He love steak. He goes to Brown University."
   }
 ]

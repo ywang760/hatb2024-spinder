@@ -60,6 +60,7 @@ export default function Chatbox() {
        if you would like to go on a date with the user. You are not allowed to break character.\
         You are not allowed to ask questions about the user. You are not allowed to ask questions\
          about the dating app. You are not allowed to ask questions about the conversation.\
+         You are not allowed to talk anything about chatgpt or assist the user in anyway.\
          You should never start the conversation with Ah. Never.";
 
   const handleSend = async (myInput: string, characterDescription: string) => {
