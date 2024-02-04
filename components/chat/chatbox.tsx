@@ -3,6 +3,8 @@ import { Message } from "@/types/chat";
 import Image from "next/image";
 import { useContext, useEffect, useState, useRef } from "react";
 
+import ModalComponent from "../ModalComponent";
+
 interface ChatboxProps {
   alien: Alien;
 }
@@ -13,6 +15,22 @@ export default function Chatbox(props: ChatboxProps) {
   const [temperature, setTemperature] = useState(50);
   const [imageURL, setImageURL] = useState("/three-body.png");
   const [imageCounter, setImageCounter] = useState(0); // used to trigger image generation when reach 4
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (temperature >= 100) {
+      if (showModal) {
+        setIsModalOpen(true);
+      }
+    }
+  }, [temperature]);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setShowModal(false);
+    // Reset temperature or handle as necessary
+  };
 
   const alien_json = JSON.stringify(props.alien);
   const characterDescription =
@@ -191,7 +209,7 @@ export default function Chatbox(props: ChatboxProps) {
     >
       {/* TODO: fix image */}
       {/* <Image src={imageURL} alt="image description" width={480} height={1080} /> */}
-
+      <ModalComponent isOpen={isModalOpen} onClose={closeModal} />
       <div className="flex flex-col flex-grow overflow-auto">
         {/* Progress bar section */}
         <div className="py-4 px-8">
