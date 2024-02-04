@@ -14,7 +14,7 @@ type GptResponse = {
 };
 
 const chatModel = new ChatOpenAI({
-  openAIApiKey: "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",
+  openAIApiKey: process.env.OPENAI_API_KEY_PETER,
 });
 
 const prompt = ChatPromptTemplate.fromMessages([

@@ -180,7 +180,7 @@ export default function Chatbox() {
               </span>
             </div>
             <div className="text-right">
-              <span className="font-semibold inline-block text-blue-200 text-2xl font-bold">
+              <span className="font-semibold inline-block text-blue-200 bg-black text-2xl font-bold">
                 {temperature}%
               </span>
             </div>
