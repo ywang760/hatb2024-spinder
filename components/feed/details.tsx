@@ -25,11 +25,11 @@ const Details = (props: detailsProps) => {
           transform: "translate(-50%, -50%)",
           borderRadius: "5rem",
         }}
-        className="flex flex-row p-10 space-x-4 bg-opacity-80 bg-zinc-200 text-zinc-800 min-w-[70vw] justify-center"
+        className="flex flex-row p-10 space-x-4 bg-opacity-80 bg-zinc-300 text-zinc-800 min-w-[70vw] justify-center"
       >
         <div className="flex flex-col items-center space-y-4 w-1/2">
           <div
-            className="flex flex-col items-center bg-white p-8 w-full"
+            className="flex flex-col items-center bg-zinc-50 p-8 w-full"
             style={{ borderRadius: "2rem" }}
           >
             <div className="w-56 h-56 rounded-full overflow-hidden relative mb-10">
@@ -59,7 +59,7 @@ const Details = (props: detailsProps) => {
             </div>
           </div>
           <div
-            className="flex items-center bg-white p-8 w-full min-h-[20vh] text-center justify-center"
+            className="flex items-center  bg-zinc-50 p-8 w-full min-h-[20vh] text-center justify-center"
             style={{ borderRadius: "2rem" }}
           >
             <p>
@@ -72,7 +72,7 @@ const Details = (props: detailsProps) => {
 
         <div className="flex flex-col space-y-4  w-1/2 items-center">
           <div
-            className="bg-white p-8 w-full space-y-2"
+            className=" bg-zinc-50 p-8 w-full space-y-2"
             style={{ borderRadius: "2rem" }}
           >
             <DescItem
@@ -93,7 +93,7 @@ const Details = (props: detailsProps) => {
           </div>
           <div className="flex space-x-4 w-full">
             <div
-              className="bg-white p-6 w-1/2 justify-center items-center flex flex-col space-y-2"
+              className="bg-zinc-50 p-6 w-1/2 justify-center items-center flex flex-col space-y-2"
               style={{ borderRadius: "2rem" }}
             >
               <h1 className="text-8xl ">{props.alien.bodyCount}</h1>
@@ -109,7 +109,7 @@ const Details = (props: detailsProps) => {
             </div>
 
             <div
-              className="bg-white p-6 w-1/2 justify-center items-center flex flex-col space-y-2"
+              className="bg-zinc-50 p-6 w-1/2 justify-center items-center flex flex-col space-y-2"
               style={{ borderRadius: "2rem" }}
             >
               <h1 className="text-8xl ">{props.alien.numberOfFingers}</h1>
@@ -125,7 +125,7 @@ const Details = (props: detailsProps) => {
             </div>
           </div>
           <div
-            className="bg-white p-8 w-full space-y-2"
+            className="bg-zinc-50 p-8 w-full space-y-2"
             style={{ borderRadius: "2rem" }}
           >
             <DescItem
@@ -146,10 +146,10 @@ const Details = (props: detailsProps) => {
           </div>
           <div className="pt-8 flex">
             <button
-              className="bg-red-500 rounded-full p-4"
+              className="bg-primary-500 rounded-full p-4"
               onClick={() => handleMessage()}
             >
-              <ChatIcon className="text-white text-2xl" />
+              <ChatIcon className="text-zinc-50 text-2xl" />
             </button>
           </div>
         </div>

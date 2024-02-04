@@ -73,18 +73,18 @@ const Card = ({ card, setCard, allCards, setAllCards }: CardProps) => {
           </div>
           <div className="absolute invisible group-hover:visible bottom-10 right-10 p-2"></div>
         </button>
-        <div className="flex items-center justify-center transform hover:scale-120 flex-row space-x-4">
+        <div className="flex items-center justify-center transform hover:scale-120 flex-row space-x-4 text-zinc-50">
           <button
             className="bg-zinc-400 rounded-full p-4"
             onClick={handleDelete}
           >
-            <ClearIcon className="text-white text-2xl " />
+            <ClearIcon className="text-2xl " />
           </button>
           <button
-            className="bg-red-500 rounded-full p-4"
+            className="bg-primary-500 rounded-full p-4"
             onClick={() => handleMessage()}
           >
-            <ChatIcon className="text-white text-2xl" />
+            <ChatIcon className=" text-2xl" />
           </button>
         </div>
       </div>

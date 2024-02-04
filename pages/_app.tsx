@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
       style={{ backgroundImage: "url('/images/home-bg.jpg')" }}
     >
       {router.pathname !== "/" && <Navbar />}
-      <div className="flex-grow bg-white bg-opacity-70">
+      <div className="flex-grow  bg-zinc-50 bg-opacity-70">
         <Component {...pageProps} />
       </div>
     </div>

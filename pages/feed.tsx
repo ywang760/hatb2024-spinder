@@ -81,10 +81,10 @@ const Feed = () => {
         />
       </div>
       <button
-        className="fixed bottom-12 right-20 bg-red-600 rounded-full p-3 animate-pulse"
+        className="fixed bottom-12 right-20 bg-primary-500 rounded-full p-3 animate-pulse"
         onClick={refreshCards}
       >
-        <RefreshIcon className="text-4xl text-white" />
+        <RefreshIcon className="text-4xl text-zinc-50" />
       </button>
     </div>
   );
