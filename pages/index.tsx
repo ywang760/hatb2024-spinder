@@ -12,8 +12,8 @@ export default function Home() {
           src="/logo.png"
           alt="Logo"
           className="mb-4" // You can adjust the margin as needed
-          width="100"   // Adjust the width to make it smaller
-          height="100"  // Adjust the height to make it smaller
+          width="100" // Adjust the width to make it smaller
+          height="100" // Adjust the height to make it smaller
           style={{ borderRadius: "30%" }}
         />
 
@@ -26,7 +26,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold text-zinc-50">
           You have some new matchups!
         </h1>
-        
+
         {/* Adjusted margin for "See profiles" link */}
         <div className="flex flex-wrap items-center justify-around max-w-4xl mt-10 sm:w-full">
           <Link

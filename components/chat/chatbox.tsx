@@ -105,8 +105,8 @@ export default function Chatbox(props: ChatboxProps) {
       await updateStats(data.content);
 
       setImageCounter(imageCounter + 1);
-      if (imageCounter == 5) {
-        // getImage(); TODO: fix image
+      if (imageCounter == 1) {
+        getImage(); // TODO: fix image
         setImageCounter(0);
       }
     }
@@ -145,64 +145,64 @@ export default function Chatbox(props: ChatboxProps) {
     }
   };
 
-  // // Get the prompt to use for generating the image
-  // const getImagePrompt = async (): Promise<string> => {
-  //   const messagesConcatenated = messages
-  //     .map((obj) =>
-  //       Object.entries(obj)
-  //         .map(([key, value]) => `${key}: ${value}`)
-  //         .join(", ")
-  //     )
-  //     .join("; ");
-  //   const characterDescription =
-  //     "You will be assessing a conversation history and determining what is the best prompt to generate an image representative of it.";
-  //   const taskDescription =
-  //     "Assess the following conversation history and generate a prompt for an image that is representative of it. Be short and concise.";
-  //   const combinedDescription = taskDescription + "\n" + messagesConcatenated;
+  // Get the prompt to use for generating the image
+  const getImagePrompt = async (): Promise<string> => {
+    const messagesConcatenated = messages
+      .map((obj) =>
+        Object.entries(obj)
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(", ")
+      )
+      .join("; ");
+    const characterDescription =
+      "You will be assessing a conversation history and determining what is the best prompt to generate an image representative of it.";
+    const taskDescription =
+      "Assess the following conversation history and generate a prompt for an image that is representative of it. Be short and concise.";
+    const combinedDescription = taskDescription + "\n" + messagesConcatenated;
 
-  //   const response = await fetch("api/image_prompt", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ combinedDescription, characterDescription }),
-  //   });
-  //   if (!response.ok) {
-  //     console.error("Error fetching chat response");
-  //     return "";
-  //   } else {
-  //     const data = await response.json();
-  //     return data.content;
-  //   }
-  // };
+    const response = await fetch("api/image_prompt", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ combinedDescription, characterDescription }),
+    });
+    if (!response.ok) {
+      console.error("Error fetching chat response");
+      return "";
+    } else {
+      const data = await response.json();
+      return data.content;
+    }
+  };
 
-  // // Get an image based on conversation
-  // const getImage = async () => {
-  //   const imagePrompt = await getImagePrompt();
-  //   if (imagePrompt) {
-  //     const response = await fetch("api/image", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ imagePrompt }),
-  //     });
-  //     if (!response.ok) {
-  //       console.error("Error fetching chat response");
-  //       return;
-  //     } else {
-  //       const data = await response.json();
-  //       setImageURL(data.content);
-  //     }
-  //   }
-  // };
+  // Get an image based on conversation
+  const getImage = async () => {
+    const imagePrompt = await getImagePrompt();
+    if (imagePrompt) {
+      const response = await fetch("api/image", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ imagePrompt }),
+      });
+      if (!response.ok) {
+        console.error("Error fetching chat response");
+        return;
+      } else {
+        const data = await response.json();
+        setImageURL(data.content);
+      }
+    }
+  };
 
   return (
     <div
       className="flex flex-col w-full m-10 p-4 border border-zinc-900 bg-zinc-600 bg-opacity-20"
       style={{
         borderRadius: "2rem",
-        backgroundImage: `url(/three-body.png)`,
+        backgroundImage: `url(${imageURL})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
