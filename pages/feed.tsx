@@ -1,13 +1,66 @@
 import React, { useState } from "react";
+import Button from "@mui/material/Button";
 import Card from "../components/feed/card";
+import RefreshIcon from '@mui/icons-material/Refresh';
+import data from "../data/alien.json";
+import { Alien } from "@/types/alien";
+const aliens: Alien[] = data;
+const num_aliens = aliens.length;
 
 const Feed = () => {
   const [card1, setCard1] = useState(0);
   const [card2, setCard2] = useState(1);
   const [card3, setCard3] = useState(2);
   const [allCards, setAllCards] = useState([0, 1, 2]);
+
+  const refreshCards = () => {
+    // cycle all 3 cards to next available
+    let newAllCards = allCards;
+    let newCard1 = card1 + 1;
+    while (newAllCards.includes(newCard1) || newCard1 >= num_aliens) {
+      if (newCard1 >= num_aliens) {
+        newCard1 = 0;
+        continue;
+      }
+      if (newCard1 === card1) {
+        break;
+      }
+      newCard1 = newCard1 + 1;
+    }
+    setCard1(newCard1);
+    newAllCards = [newCard1, card2, card3]
+    let newCard2 = card2 + 1;
+    while (newAllCards.includes(newCard2) || newCard2 >= num_aliens) {
+      if (newCard2 >= num_aliens) {
+        newCard2 = 0;
+        continue;
+      }
+      if (newCard2 === card2) {
+        break;
+      }
+      newCard2 = newCard2 + 1;
+    }
+    setCard2(newCard2);
+    newAllCards = [newCard1, newCard2, card3]
+    let newCard3 = card3 + 1;
+    while (newAllCards.includes(newCard3) || newCard3 >= num_aliens) {
+      if (newCard3 >= num_aliens) {
+        newCard3 = 0;
+        continue;
+      }
+      if (newCard3 === card3) {
+        break;
+      }
+      newCard3 = newCard3 + 1;
+    }
+    setCard3(newCard3);
+    newAllCards = [newCard1, newCard2, newCard3]
+    setAllCards(newAllCards);
+  }
+
   return (
-    <div className="h-full flex flex-row items-center mx-10 space-x-10">
+    <div className="h-full flex flex-col items-center justify-center">
+    <div className="flex flex-row items-center mx-10 space-x-10">
       <Card
         card={card1}
         setCard={setCard1}
@@ -26,6 +79,10 @@ const Feed = () => {
         allCards={allCards}
         setAllCards={setAllCards}
       />
+    </div>
+    <Button className="fixed bottom-4 right-4" onClick={refreshCards}>
+      <RefreshIcon/>
+    </Button>
     </div>
   );
 };

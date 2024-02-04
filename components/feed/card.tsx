@@ -31,7 +31,6 @@ const Card = ({ card, setCard, allCards, setAllCards }: CardProps) => {
   };
 
   const handleDelete = () => {
-    console.log("Delete", card);
     const otherCards = allCards.filter((c) => c !== card);
     let newCard = card + 1;
     while (otherCards.includes(newCard) || newCard >= num_aliens) {
@@ -46,7 +45,6 @@ const Card = ({ card, setCard, allCards, setAllCards }: CardProps) => {
     }
     setCard(newCard);
     setAllCards([...otherCards, newCard]);
-    console.log("New card", newCard);
   };
 
   return (
