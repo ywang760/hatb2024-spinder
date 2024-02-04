@@ -1,5 +1,6 @@
 // ModalComponent.tsx
 import React from "react";
+import Modal from "@mui/material/Modal";
 
 interface ModalProps {
   isOpen: boolean;
@@ -13,7 +14,7 @@ export default function ModalComponent({ isOpen, onClose }: ModalProps) {
     <div className="modal-overlay">
       <div className="modal-container text-primary-200 text-xl font-semibold">
         <h2>Congratulations!</h2>
-        <p>You've reached 100% relationship temperature.</p>
+        <p>You&#39;ve reached 100% relationship temperature.</p>
         <button onClick={onClose}>Continue Playing</button>
       </div>
     </div>
