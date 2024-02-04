@@ -10,14 +10,14 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: (theme) => ({
-        "home-bg": "url('/images/home-bg.jpg')",
+        "home-bg": "url('/home-bg.jpg')",
       }),
       fontFamily: {
         "pixel-font": ['"Press Start 2P"', "cursive"],
         mono: ["var(--font-roboto-mono)"],
       },
       colors: {
-        primary: colors.violet,
+        primary: colors.sky,
       },
     },
   },

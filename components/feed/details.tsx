@@ -40,12 +40,15 @@ const Details = (props: detailsProps) => {
           transform: "translate(-50%, -50%)",
           borderRadius: "5rem",
         }}
-        className="flex flex-row p-10 space-x-4 bg-opacity-80 bg-zinc-300 text-zinc-800 min-w-[70vw] justify-center"
-        style={{ fontFamily: "Cute Font" }}
+        className="flex flex-row p-10 space-x-4 text-zinc-800 min-w-[70vw] justify-center"
+        style={{
+          fontFamily: "Cute Font",
+          backgroundImage: "url('/galaxy.jpg')",
+        }}
       >
-        <div className="flex flex-col items-center space-y-4 w-1/2">
+        <div className="flex flex-col items-center space-y-4 w-1/2 ">
           <div
-            className="flex flex-col items-center bg-zinc-50 p-8 w-full"
+            className="flex flex-col items-center bg-zinc-50 p-6 w-full"
             style={{ borderRadius: "2rem" }}
           >
             <div className="w-56 h-56 rounded-full overflow-hidden relative mb-4">
@@ -84,7 +87,7 @@ const Details = (props: detailsProps) => {
 
         <div className="flex flex-col space-y-4  w-1/2 items-center">
           <div
-            className=" bg-zinc-50 p-8 w-full space-y-2"
+            className=" bg-zinc-50 p-6 w-full space-y-2"
             style={{ borderRadius: "2rem" }}
           >
             <DescItem
@@ -137,7 +140,7 @@ const Details = (props: detailsProps) => {
             </div>
           </div>
           <div
-            className="bg-zinc-50 p-8 w-full space-y-2"
+            className="bg-zinc-50 p-6 w-full space-y-2"
             style={{ borderRadius: "2rem" }}
           >
             <DescItem
