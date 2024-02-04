@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { Message } from "@/types/chat";
-import Button from "@mui/material/Button";
+import { useState } from "react";
 
 export default function Chatbox() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -34,6 +33,7 @@ export default function Chatbox() {
       },
       body: JSON.stringify({ myInput, characterDescription }),
     });
+    
 
     if (!response.ok) {
       console.error("Error fetching chat response");
@@ -58,6 +58,7 @@ export default function Chatbox() {
         setImageCounter(0);
       }
     }
+
   };
 
   // Update the temperature based on the response

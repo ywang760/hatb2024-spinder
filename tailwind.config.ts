@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 const config: Config = {
   content: [
@@ -13,6 +14,9 @@ const config: Config = {
       }),
       fontFamily: {
         "pixel-font": ['"Press Start 2P"', "cursive"],
+      },
+      colors: {
+        primary: colors.violet,
       },
     },
   },
