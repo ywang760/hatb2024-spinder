@@ -117,7 +117,7 @@ export default function Chatbox(props: ChatboxProps) {
     const characterDescription =
       "You will be assessing how well the relationship is going from the responses of the participant.";
     const taskDescription =
-      "Give a single numerical value from 0 to 10 on how this dialog affects the relationship of this person, \
+      "Give a single numerical value from 0 to 20 on how this dialog affects the relationship of this person, \
       0 means their relationship is very negative, and 20 means their relationship is very positive. \
       Any number in between is a linear interpolation between the two relationship acessments. \
       For example: I am not interested in you. This gets 0. \
