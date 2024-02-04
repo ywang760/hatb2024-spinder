@@ -21,7 +21,7 @@ export default async function handler(
 
     const response = await openai.images.generate({
       model: "dall-e-3",
-      prompt: myInput,
+      prompt: myInput as string,
       n: 1,
       size: "1024x1024",
     });
