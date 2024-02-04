@@ -53,7 +53,9 @@ export default function Chatbox(props: ChatboxProps) {
   const divRef = useRef(null);
   useEffect(() => {
     const div = divRef.current;
-    div.scrollTop = div.scrollHeight;
+    // if (div) {
+    //   div.scrollTop = div.scrollHeight;
+    // }
   }, []);
 
   const handleSend = async (myInput: string, characterDescription: string) => {

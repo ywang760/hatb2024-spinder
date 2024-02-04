@@ -5,9 +5,11 @@ export default function Home() {
   const [showWarning, setShowWarning] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-home-bg bg-cover bg-center font-mono">
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-home-bg bg-cover bg-center font-mono w-full">
       <main className="flex flex-col items-center justify-center flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold text-zinc-50">You have some new matchups!</h1>
+        <h1 className="text-6xl font-bold text-zinc-50">
+          You have some new matchups!
+        </h1>
         <div className="flex flex-wrap items-center justify-around max-w-4xl mt-20 sm:w-full">
           <Link
             href="/feed"
