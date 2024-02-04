@@ -19,9 +19,6 @@ interface Alien {
   dimensionalCompatibility: string;
   meansOfCommunication: string;
 
-  favoriteFood: string;
-  favoriteProgrammingLanguage: string;
-  funFact?: string;
 }
 
 export { Alien };
