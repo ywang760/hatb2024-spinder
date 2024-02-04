@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
     >
       {router.pathname !== "/" && <Navbar />}
       <AlienStateProvider>
-        <div className="flex-grow  bg-zinc-50 bg-opacity-70">
+        <div className="flex-grow flex bg-zinc-50 bg-opacity-70">
           <Component {...pageProps} />
         </div>
       </AlienStateProvider>
