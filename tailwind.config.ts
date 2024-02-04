@@ -11,6 +11,9 @@ const config: Config = {
       backgroundImage: (theme) => ({
         "home-bg": "url('/images/home-bg.jpg')",
       }),
+      fontFamily: {
+        "pixel-font": ['"Press Start 2P"', "cursive"],
+      },
     },
   },
   plugins: [],

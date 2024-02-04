@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Arcade game style progress bar */
+@keyframes arcadeGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.progress-bar {
+  background: linear-gradient(270deg, #00dbde, #fc00ff, #00dbde, #fc00ff);
+  background-size: 200% 200%;
+  animation: arcadeGlow 2s infinite;
+  border: 1px solid #ffffff; /* Add a pixelated border effect */
+  box-shadow: 0 0 10px #00dbde, 0 0 20px #fc00ff; /* Glowing effect */
+}
+
+/* Optional: Add a pixelated effect */
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/png;base64,...") repeat; /* Use a small pixel pattern */
+  opacity: 0.2;
+}
