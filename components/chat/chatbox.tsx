@@ -147,7 +147,6 @@ export default function Chatbox(props: ChatboxProps) {
 
   // // Get the prompt to use for generating the image
   const getImagePrompt = async (): Promise<string> => {
-    console.log("image getting");
     const messagesConcatenated = messages
       .map((obj) =>
         Object.entries(obj)
