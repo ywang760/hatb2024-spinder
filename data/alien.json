@@ -19,7 +19,7 @@
   },
   {
     "name": "Xar",
-    "shortBio": "join me in the quantum realm!",
+    "shortBio": "Join me in the quantum realm!",
     "species": "Plasma Harmonizer",
     "age": "789567 microseconds",
     "height": "12 lightyears",
@@ -88,7 +88,7 @@
   },
   {
     "name": "Grey",
-    "shortBio": "do you believe in aliens?",
+    "shortBio": "Do you believe in aliens?",
     "species": "Zeta Reticulan",
     "age": "150 Earth years",
     "height": "140 cm",
@@ -279,15 +279,15 @@
     "species": "Homosapien",
     "age": "21 Earth years",
     "height": "183 cm",
-    "bodyCount": "???",
+    "bodyCount": "π",
     "numberOfFingers": "5",
     "visibleSpectrum": "380nm-740nm",
     "dimensionalCompatibility": "3 dimensional",
     "mbti": "INTJ",
     "currentLocation": "Earth",
-    "origin": "Earth, China",
+    "origin": "Earth",
     "occupation": "Apprentice Programmer",
     "meansOfCommunication": "Sound Waves",
-    "profilePicture": "/images/eason.jpg"
+    "profilePicture": "/images/eason.png"
   }
 ]
