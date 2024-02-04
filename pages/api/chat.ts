@@ -7,7 +7,7 @@ type GptResponse = {
 
 // Define a type for the messages in the conversation history
 type Message = {
-  role: 'system' | 'user' | 'assistant';
+  role: "system" | "user" | "assistant";
   content: string;
 };
 
@@ -41,12 +41,15 @@ export default async function handler(
 
     // Append new user input to the conversation history
     if (myInput === "reset") {
-      conversationHistory = [{
-        role: "system",
-        content: characterDescription,
-      }];
-      return res.status(200).json({ content: "Chat history successfully reset." });
-      
+      conversationHistory = [
+        {
+          role: "system",
+          content: characterDescription,
+        },
+      ];
+      return res
+        .status(200)
+        .json({ content: "Chat history successfully reset." });
     } else
       conversationHistory.push({
         role: "user",
@@ -65,10 +68,10 @@ export default async function handler(
 
     // Append OpenAI's response to the conversation history for continuity
     if (
-      response.choices && 
-      response.choices.length > 0 && 
+      response.choices &&
+      response.choices.length > 0 &&
       response.choices[0].message.content !== null
-      ) {
+    ) {
       const messageContent = response.choices[0].message.content;
       conversationHistory.push({
         role: "assistant",
@@ -77,8 +80,8 @@ export default async function handler(
       res.status(200).json({ content: messageContent });
     } else {
       res
-      .status(500)
-      .json({ content: "Failed to fetch a valid response from OpenAI" });
+        .status(500)
+        .json({ content: "Failed to fetch a valid response from OpenAI" });
     }
   } catch (error) {
     console.error(error);
