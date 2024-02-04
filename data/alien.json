@@ -16,7 +16,7 @@
     "favoriteFood": "Solar Wind Confections",
     "favoriteProgrammingLanguage": "EtherScript",
     "funFact": "Can harmonize with gravitational waves.",
-    "profilePicture": "/profile.png"
+    "profilePicture": "/images/zorg.png"
   },
   {
     "name": "Xar",
@@ -34,7 +34,7 @@
     "meansOfCommunication": "Harmonic Resonance",
     "favoriteFood": "Radiant Nebula Nectar",
     "favoriteProgrammingLanguage": "PlasmaCode",
-    "profilePicture": "/profile.png"
+    "profilePicture": "/images/xar.png"
   },
   {
     "name": "Vex",
@@ -53,7 +53,7 @@
     "favoriteFood": "Quantum Fluctuations",
     "favoriteProgrammingLanguage": "GravitonScript",
     "funFact": "Once surfed a black hole's event horizon.",
-    "profilePicture": "/profile.png"
+    "profilePicture": "/images/vex.png"
   },
   {
     "name": "Kor",
@@ -71,6 +71,6 @@
     "meansOfCommunication": "Temporal Ripples",
     "favoriteFood": "Eternal Cosmic Popcorn",
     "favoriteProgrammingLanguage": "QuantumAssembler",
-    "profilePicture": "/profile.png"
+    "profilePicture": "/images/kor.png"
   }
 ]
