@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 const config: Config = {
   content: [
@@ -11,6 +12,9 @@ const config: Config = {
       backgroundImage: (theme) => ({
         "home-bg": "url('/images/home-bg.jpg')",
       }),
+      colors: {
+        primary: colors.violet,
+      },
     },
   },
   plugins: [],
