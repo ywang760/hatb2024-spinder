@@ -129,12 +129,12 @@ const Details = (props: detailsProps) => {
             >
               <h1 className="text-8xl ">{props.alien.numberOfFingers}</h1>
               <div className="flex flex-row itmes-center space-x-1">
-                <Image
+               <Image
                   src={"https://img.icons8.com/color/48/hand--v1.png"}
                   alt={"icon for finger count"}
                   width={24}
                   height={24}
-                />
+                /> 
                 <p className="">Finger Count</p>
               </div>
             </div>

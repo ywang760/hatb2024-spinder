@@ -1,9 +1,8 @@
-import React, { useState } from "react";
 import Chatbox from "@/components/chat/chatbox";
 
 const chat = () => {
   return (
-    <div className="px-20">
+    <div className="flex flex-col items-center justify-center">
       <Chatbox />
     </div>
   );

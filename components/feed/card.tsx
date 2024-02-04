@@ -20,7 +20,6 @@ type CardProps = {
 
 const Card = ({ card, setCard, allCards, setAllCards }: CardProps) => {
   const router = useRouter();
-  // TODO: change mock data
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const context = React.useContext(AlienStateContext);
 
