@@ -3,6 +3,7 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import { useState } from "react";
 import Card from "../components/feed/card";
 import data from "../data/alien.json";
+
 const aliens: Alien[] = data;
 const num_aliens = aliens.length;
 
