@@ -16,7 +16,7 @@ export default async function handler(
   const characterDescription = Object.values(req.body)[1];
   try {
     const openai = new OpenAI({
-      apiKey: process.env.OPEN_AI_API_KEY_PETER,
+      apiKey: process.env.OPEN_AI_API_KEY,
     });
 
     const response = await openai.images.generate({

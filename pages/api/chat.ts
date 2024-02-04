@@ -28,7 +28,7 @@ export default async function handler(
 
   try {
     const openai = new OpenAI({
-      apiKey: process.env.OPEN_AI_API_KEY_PETER, // Replace with your actual API key
+      apiKey: process.env.OPEN_AI_API_KEY, // Replace with your actual API key
     });
 
     // Initialize conversation history with character description if it's the first request
