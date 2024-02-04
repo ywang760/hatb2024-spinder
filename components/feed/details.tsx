@@ -3,16 +3,30 @@ import ChatIcon from "@mui/icons-material/Chat";
 import { Box, Modal } from "@mui/material";
 import Image from "next/image";
 import DescItem from "./descItem";
+import { AlienStateContext } from "../../components/AlienContext";
+import { useContext } from "react";
+import { useRouter } from 'next/router';
 
 interface detailsProps {
+  id: number;
   alien: Alien;
   showDetails: boolean;
   setShowDetails: (show: boolean) => void;
 }
 
 const Details = (props: detailsProps) => {
+  const router = useRouter();
+  const context = useContext(AlienStateContext);
+
+  if (!context) {
+    throw new Error("useAlienState must be used within a AlienStateProvider");
+  }
+
+  const { chosenAlien, setChosenAlien } = context;
+
   const handleMessage = () => {
-    console.log("Message");
+    setChosenAlien(props.id);
+    router.push('/chat');
   };
 
   return (

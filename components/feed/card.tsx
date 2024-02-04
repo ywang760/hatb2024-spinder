@@ -1,10 +1,12 @@
 import Details from "@/components/feed/details";
-import { Alien } from "@/types/alien";
 import ChatIcon from "@mui/icons-material/Chat";
 import ClearIcon from "@mui/icons-material/Clear";
 import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Alien } from "@/types/alien";
 import data from "../../data/alien.json";
+import { AlienStateContext } from "../../components/AlienContext";
+import { useRouter } from 'next/router';
 
 const aliens: Alien[] = data;
 const num_aliens = aliens.length;
@@ -17,16 +19,20 @@ type CardProps = {
 };
 
 const Card = ({ card, setCard, allCards, setAllCards }: CardProps) => {
+  const router = useRouter();
   // TODO: change mock data
-  const alien = aliens[card];
   const [showDetails, setShowDetails] = useState<boolean>(false);
+  const context = React.useContext(AlienStateContext);
 
-  if (!alien) {
-    return null;
+  if (!context) {
+    throw new Error("useAlienState must be used within a AlienStateProvider");
   }
 
+  const { chosenAlien, setChosenAlien } = context;
+
   const handleMessage = () => {
-    console.log("Message");
+    setChosenAlien(card);
+    router.push('/chat');
   };
 
   const handleDelete = () => {
@@ -45,6 +51,11 @@ const Card = ({ card, setCard, allCards, setAllCards }: CardProps) => {
     setCard(newCard);
     setAllCards([...otherCards, newCard]);
   };
+
+  const alien = aliens[card];
+  if (!alien) {
+    return null;
+  }
 
   return (
     <>
@@ -88,6 +99,7 @@ const Card = ({ card, setCard, allCards, setAllCards }: CardProps) => {
         </div>
       </div>
       <Details
+        id={card}
         alien={alien}
         showDetails={showDetails}
         setShowDetails={setShowDetails}

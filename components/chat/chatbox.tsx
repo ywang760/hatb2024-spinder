@@ -1,7 +1,11 @@
 import { Message } from "@/types/chat";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AlienStateContext } from "../../components/AlienContext";
+import { Alien } from "@/types/alien";
+import data from "../../data/alien.json";
 
 export default function Chatbox() {
+  const aliens: Alien[] = data;
   const [messages, setMessages] = useState<Message[]>([]);
   const [myInput, setMyInput] = useState("");
   const [characterDescription, setCharacterDescription] = useState(
@@ -19,6 +23,14 @@ export default function Chatbox() {
   //    cheating, or analogies. Do not write any explanations. Only answer like the aliens. \
   //    Do not tell me anything about chatgpt. Do not be my assistant or assist me in any way."
   // );
+  const context = useContext(AlienStateContext);
+  if (!context) {
+    throw new Error("useAlienState must be used within a AlienStateProvider");
+  }
+  const { chosenAlien, setChosenAlien } = context;
+  if (chosenAlien === null) {
+    return <div>Choose an alien first</div>;
+  }
 
   const handleSend = async (myInput: string, characterDescription: string) => {
     setMyInput("");
@@ -174,7 +186,7 @@ export default function Chatbox() {
           <div className="flex mb-2 items-center justify-between font-mono pb-4">
             <div>
               <span className="text-xl font-semibold inline-block py-1 px-2 uppercase rounded text-blue-200 bg-black">
-                Relationship Temp
+                {aliens[chosenAlien].name} Relationship Temp
               </span>
             </div>
             <div className="text-right">
