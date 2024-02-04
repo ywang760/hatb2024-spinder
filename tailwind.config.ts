@@ -14,6 +14,10 @@ const config: Config = {
       }),
       fontFamily: {
         "pixel-font": ['"Press Start 2P"', "cursive"],
+        sans: ["var(--font-inter)"],
+        mono: ["var(--font-roboto-mono)"],
+        cute: ["var(--font-cute)"],
+        nanum: ["var(--font-nanum)"],
       },
       colors: {
         primary: colors.violet,

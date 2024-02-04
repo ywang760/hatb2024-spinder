@@ -27,7 +27,7 @@ const Details = (props: detailsProps) => {
         }}
         className="flex flex-row p-10 space-x-4 bg-opacity-80 bg-zinc-300 text-zinc-800 min-w-[70vw] justify-center"
       >
-        <div className="flex flex-col items-center space-y-4 w-1/2">
+        <div className="flex flex-col items-center space-y-4 w-1/2 ">
           <div
             className="flex flex-col items-center bg-zinc-50 p-8 w-full"
             style={{ borderRadius: "2rem" }}
@@ -59,14 +59,10 @@ const Details = (props: detailsProps) => {
             </div>
           </div>
           <div
-            className="flex items-center  bg-zinc-50 p-8 w-full min-h-[20vh] text-center justify-center"
+            className=" flex bg-zinc-50 p-8 w-full min-h-[20vh] justify-center items-center font-nanum"
             style={{ borderRadius: "2rem" }}
           >
-            <p>
-              {props.alien.shortBio
-                ? props.alien.shortBio
-                : "There's nothing about me yet!"}
-            </p>
+            <p className="font-nanum">{props.alien.shortBio}</p>
           </div>
         </div>
 

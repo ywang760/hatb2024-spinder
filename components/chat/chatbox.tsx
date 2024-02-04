@@ -33,7 +33,6 @@ export default function Chatbox() {
       },
       body: JSON.stringify({ myInput, characterDescription }),
     });
-    
 
     if (!response.ok) {
       console.error("Error fetching chat response");
@@ -58,7 +57,6 @@ export default function Chatbox() {
         setImageCounter(0);
       }
     }
-
   };
 
   // Update the temperature based on the response
@@ -171,16 +169,19 @@ export default function Chatbox() {
         alt="image description"
         style={{ zIndex: -1 }}
       />
-      <div className="flex flex-col relative z-10 p-4 flex-grow overflow-auto">
+      <div className="flex flex-col relative z-10 p-6 flex-grow overflow-auto">
         <div className="relative pt-1">
-          <div className="flex mb-2 items-center justify-between">
+          <div className="flex mb-2 items-center justify-between font-mono pb-4">
             <div>
-              <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-blue-200 bg-black">
+              <span className="text-xl font-semibold inline-block py-1 px-2 uppercase rounded text-blue-200 bg-black">
                 Relationship Temp
               </span>
             </div>
             <div className="text-right">
-              <span className="font-semibold inline-block text-blue-200 bg-black text-2xl font-bold">
+              <span
+                className="font-semibold inline-block text-blue-200 bg-black text-xl py-1 px-2"
+                style={{ borderRadius: "0.5rem" }}
+              >
                 {temperature}%
               </span>
             </div>
@@ -211,7 +212,7 @@ export default function Chatbox() {
                 padding: "10px",
               }}
             >
-              <p className="font-bold">{message.sender}</p>
+              <p className="font-bold font-nanum text-2xl">{message.sender}</p>
               <p>{message.content}</p>
             </div>
           ))}
