@@ -138,7 +138,7 @@ export default function Chatbox(props: ChatboxProps) {
       const data = await response.json();
       const tempChange = Number(data.content);
       if (!isNaN(tempChange)) {
-        setTemperature(temperature + tempChange - 5);
+        setTemperature(temperature + tempChange - 10);
       } else {
         console.log("input temperature value is not a number");
       }
