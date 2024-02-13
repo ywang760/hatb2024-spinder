@@ -1,4 +1,4 @@
-# Spinder
+# Spinder: a dating simulator with habitants across space
 
 A [Hack@Brown](https://hackatbrown.org/) 2024 project by four junior students at Brown University.
 
@@ -25,6 +25,5 @@ It's hard to integrate Open AI api's with the ability to manage chat history.
 We built a cool website. We successfully integrated ChatGPT api and successfully used Dall-E to generate images in real time.
 
 
-## What's next for Spinder: a dating simulator with habitants across space
-
+## What's next for Spinder
 Improve the prompts with more experiments; use database for better managements; give users the freedom to create characters.
