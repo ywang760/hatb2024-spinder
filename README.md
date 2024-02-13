@@ -1,23 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Spinder
 
-## Getting Started
+A [Hack@Brown](https://hackatbrown.org/) 2024 project by four junior students at Brown University.
 
-```bash
-npm run dev
-```
+Check out our [Devpost](https://devpost.com/software/spinder-a-dating-simulator-with-habitants-across-space)!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Inspiration
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Large language models are great. We want to discover the potential of LLMs to act in characters, which can bring emotional values to users. We wanted to stick to the theme of outer space, and see how good chatgpt-4 is at generalizing and reasoning, to chat like beings beyond humans.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## What it does
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+It is a simulation of a dating app, where you can chat with 17 different aliens with different personalities. There will be a relation temperature bar that indicates your progress.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## How we built it
 
-## Deploy on Vercel
+We used Next js as front end, and connected it to open ai api's. We used prompt engineer tricks to create aliens with different personalities, and kept track of the conversation history. We also integrated DALL-E api to generate images realtime according to conversation contexts. A relationship temperature bar was used to indicate your progress with the alien. Each time the alien sends you a message, a 'judge' chatgpt-4 will rate a number between -10 to 10 to modify the temperature bar.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Challenges we ran into
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+It's hard to integrate Open AI api's with the ability to manage chat history.
+
+## Accomplishments that we're proud of
+
+We built a cool website. We successfully integrated ChatGPT api and successfully used Dall-E to generate images in real time.
+
+
+## What's next for Spinder: a dating simulator with habitants across space
+
+Improve the prompts with more experiments; use database for better managements; give users the freedom to create characters.
