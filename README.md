@@ -1,4 +1,4 @@
-# Spinder: a dating simulator with habitants across space
+# Spinder: a dating simulator with inhabitants across space
 
 A [Hack@Brown](https://hackatbrown.org/) 2024 project by four junior students at Brown University.
 
